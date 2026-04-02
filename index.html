@@ -669,9 +669,9 @@ async function callClaude(prompt,imgs){
       'anthropic-version':'2023-06-01'
     },
     body:JSON.stringify({
-      model:'claude-haiku-4-5-20251001',
+      model:'claude-sonnet-4-20250514',
       max_tokens:1200,
-      tools:[{type:'web_search_20250305',name:'web_search',max_uses:5}],
+      tools:[{type:'web_search_20250305',name:'web_search',max_uses:3}],
       messages:[{role:'user',content}]
     })
   });
@@ -721,113 +721,8 @@ async function runAnalyzer(){
   const catLabel=cat==='bag'?'дизайнерская сумка / аксессуар':'дизайнерские часы';
   const brandLabel=BRAND_INFO[brandKey]?.label||'неизвестен';
   const isDirectItem=url&&url.includes('jdirectitems');
-  const urlTypeHint=isDirectItem?'ТИП: прямая покупка (фиксированная цена, не аукцион). current_jpy = цена покупки, max_bid_jpy = та же цена.':'ТИП: аукцион — найди текущую ставку.';
-  const prompt='Ты — эксперт по перепродаже дизайнерских вещей.\n\nЛОТ: '+(url||'URL не указан')+'\n'+urlTypeHint+'\nКАТЕГОРИЯ: '+catLabel+'\nБРЕНД: '+brandLabel+'\nСОСТОЯНИЕ: '+COND_LABELS[cond]+' скидка '+(disc*100).toFixed(0)+'%\n'+(manualOn&&jpyManual?'ЦЕНА: ¥'+jpyManual:'ЦЕНА: найди по URL через web_search')+'\n'+(manualOn&&rateManual?'КУРС: '+rateManual:'КУРС JPY/EUR: найди через web_search')+'\nДОСТАВКА: 25 EUR фикс\nПРОДАЖА: Vestiaire EU (14%) и Vinted EU (5%) — только Европа\n'+(extra?'ДОП: '+extra:'')+'\n\nРОВНО 5 ПОИСКОВ (не больше!):\n1. Найди товар по URL: '+url+' — бренд, модель, цена в иенах\n2. Курс JPY EUR сегодня\n3. [бренд модель] vestiaire europe — мин.цена активных, кол-во, ссылка\n4. [бренд модель] sold vestiaire — средняя цена продаж\n5. [бренд модель] vinted — мин.цена EU, ссылка\n\nФОРМУЛЫ: adjusted=realistic_sell*(1-'+disc+'), net_vc=adjusted*0.86, max_bid_eur=(net_vc-25)/2, max_bid_jpy=max_bid_eur/rate, multiplier=net_vc/(current_eur+25)\nВЕРДИКТ: БРАТЬ>=1.9x РИСКОВАННО 1.5-1.89x НЕ БРАТЬ<1.5x\n\nТОЛЬКО JSON без лишнего текста:\n{"item_name":"Бренд Модель","item_desc":"цвет/материал","verdict":"БРАТЬ","verdict_reason":"кратко","rate":0.0061,"current_jpy":4500,"current_eur":27.5,"max_bid_jpy":7200,"max_bid_eur":43.9,"multiplier_str":"2.1x","multiplier_num":2.1,"realistic_sell":155,"adjusted":120,"net_vc":103,"cheapest_vc_price":180,"cheapest_vc_cond":"A","cheapest_vc_url":"https://...","cheapest_vc_desc":"описание","count_vc":"~11","sold_avg_vc":145,"cheapest_vinted_price":120,"cheapest_vinted_url":"https://...","cheapest_vinted_desc":"описание","competition":"средняя","sell_speed":"средне (3-4 нед)","best_platform":"Vestiaire","analysis":"3-4 предложения на русском"}'
-  try{
-    const d=await callClaude(prompt,photos.length?photos:null);
-    finishSteps('as',6);
-    setTimeout(()=>showAnalyzerResult(d,cond,brandKey),300);
-  }catch(e){
-    document.getElementById('a-loader').classList.remove('on');
-    document.getElementById('a-btn').disabled=false;
-    showErr('a-err','Ошибка: '+e.message);
-  }
-}
-
-function showAnalyzerResult(d,cond,brandKey){
-  document.getElementById('a-loader').classList.remove('on');
-  lastResult=d;
-  document.getElementById('a-item-name').textContent=d.item_name||'—';
-  document.getElementById('a-item-cond').textContent=(d.item_desc?d.item_desc+' · ':'')+COND_LABELS[cond];
-  const vh=document.getElementById('a-verd');
-  const cls=d.verdict==='БРАТЬ'?'go':d.verdict==='РИСКОВАННО'?'warn':'no';
-  vh.className='verd-row '+cls;
-  document.getElementById('a-v-word').textContent=d.verdict||'—';
-  document.getElementById('a-v-why').textContent=d.verdict_reason||'';
-  document.getElementById('a-mult').textContent=d.multiplier_str||'?';
-  const cur=d.current_jpy,max=d.max_bid_jpy;
-  if(cur&&max){
-    const pct=Math.min(100,Math.max(0,(cur/max)*100));
-    const fill=document.getElementById('a-bar-fill');
-    fill.style.background=cur<=max?'var(--go)':'var(--red)';
-    setTimeout(()=>fill.style.width=pct+'%',100);
-  }
-  document.getElementById('a-cur-jpy').textContent=fmtJpy(d.current_jpy);
-  document.getElementById('a-cur-eur').textContent=fmt(d.current_eur);
-  document.getElementById('a-max-jpy').textContent=fmtJpy(d.max_bid_jpy);
-  document.getElementById('a-max-eur').textContent=fmt(d.max_bid_eur);
-  const isGood=d.current_jpy&&d.max_bid_jpy&&d.current_jpy<=d.max_bid_jpy;
-  document.getElementById('a-s0').textContent=fmtJpy(d.max_bid_jpy);
-  document.getElementById('a-s0').className='sc-val '+(isGood?'go':'warn');
-  document.getElementById('a-s0s').textContent=fmt(d.max_bid_eur);
-  document.getElementById('a-s1').textContent=fmt(d.realistic_sell);
-  document.getElementById('a-s2').textContent=fmt(d.net_vc);
-  const compMap={'низкая':'go','средняя':'warn','высокая':'no'};
-  document.getElementById('a-s3').textContent=d.competition||'—';
-  document.getElementById('a-s3').className='sc-val '+(compMap[d.competition]||'');
-  document.getElementById('a-s3s').textContent=d.count_vc||'';
-  const bi=BRAND_INFO[brandKey];
-  if(bi&&bi.label&&bi.note){
-    document.getElementById('a-brand-badge').style.display='flex';
-    document.getElementById('a-brand-name').textContent=bi.label;
-    document.getElementById('a-brand-note').textContent=bi.note;
-  }else{
-    document.getElementById('a-brand-badge').style.display='none';
-  }
-  const ci=[];
-  if(d.cheapest_vc_price)ci.push({cls:'vc',plat:'Vestiaire',price:fmt(d.cheapest_vc_price),desc:(d.cheapest_vc_desc||'')+(d.cheapest_vc_cond?' · '+d.cheapest_vc_cond:''),url:d.cheapest_vc_url});
-  if(d.cheapest_vinted_price)ci.push({cls:'vi',plat:'Vinted',price:fmt(d.cheapest_vinted_price),desc:d.cheapest_vinted_desc||'',url:d.cheapest_vinted_url});
-  document.getElementById('a-cheap').innerHTML=ci.length?ci.map(c=>'<div class="cheap-item"><div class="cheap-plat '+c.cls+'">'+c.plat+'</div><div class="cheap-info"><div class="cheap-price">'+c.price+'</div><div class="cheap-desc">'+(c.desc||'—')+'</div></div>'+(c.url?'<a class="cheap-link" href="'+c.url+'" target="_blank">открыть →</a>':'')+'</div>').join(''):'<div style="padding:10px 0;font-family:\'DM Mono\',monospace;font-size:10px;color:var(--dim)">Данные не найдены</div>';
-  const rows=[['Листингов на Vestiaire',d.count_vc||'—',''],['Среднее проданных (VC)',fmt(d.sold_avg_vc),''],['Скорость продажи',d.sell_speed||'—',''],['Лучшая платформа',d.best_platform||'—','g'],['Курс ¥/€',d.rate?d.rate.toFixed(4):'—',''],['Доставка','€25','']];
-  document.getElementById('a-mkt').innerHTML=rows.map(([k,v,c])=>'<div class="mrow"><span class="mk">'+k+'</span><span class="mv'+(c?' '+c:'')+'">'+v+'</span></div>').join('');
-  document.getElementById('a-analysis').innerHTML=(d.analysis||'—').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
-  document.getElementById('a-result').classList.add('on');
-  document.getElementById('a-btn').disabled=false;
-  document.getElementById('a-result').scrollIntoView({behavior:'smooth',block:'start'});
-  history.unshift({id:randId(),date:new Date().toLocaleDateString('ru-RU'),item:d.item_name||'Unknown',verdict:d.verdict||'—',mult:d.multiplier_str||'?',mult_num:d.multiplier_num||0,max_bid_jpy:d.max_bid_jpy,max_bid_eur:d.max_bid_eur,current_jpy:d.current_jpy,url:document.getElementById('a-url').value.trim(),cond,analysis:d.analysis||''});
-  if(history.length>30)history=history.slice(0,30);
-  saveHist(history);updateBadges();
-}
-
-function addToWatchlist(){
-  if(!lastResult){alert('Сначала проведи анализ');return;}
-  watchlist.unshift({id:randId(),name:lastResult.item_name||'Unknown',max_bid_jpy:lastResult.max_bid_jpy,max_bid_eur:lastResult.max_bid_eur,target_sell:lastResult.realistic_sell,url:document.getElementById('a-url').value.trim(),status:'watch',note:'',date:new Date().toLocaleDateString('ru-RU')});
-  saveWL(watchlist);updateBadges();
-  const btn=document.querySelector('.act-btn.gold');btn.textContent='✓ Добавлено';
-  setTimeout(()=>btn.textContent='+ В Watchlist',2000);
-}
-function copyAnalysis(){
-  if(!lastResult)return;
-  navigator.clipboard.writeText([lastResult.item_name,lastResult.verdict+' · '+lastResult.multiplier_str,'Макс. бид: '+fmtJpy(lastResult.max_bid_jpy)+' ('+fmt(lastResult.max_bid_eur)+')','Текущая: '+fmtJpy(lastResult.current_jpy),'',lastResult.analysis].join('\n')).catch(()=>{});
-}
-function resetAnalyzer(){
-  document.getElementById('a-result').classList.remove('on');
-  document.getElementById('a-url').value='';
-  photos=[];renderThumbs();
-  document.getElementById('a-url').focus();lastResult=null;
-  document.getElementById('a-bar-fill').style.width='0%';
-}
-
-// HUNTER
-document.getElementById('h-cat').querySelectorAll('.cat-b').forEach(b=>{
-  b.onclick=()=>{document.getElementById('h-cat').querySelectorAll('.cat-b').forEach(x=>x.classList.remove('on'));b.classList.add('on');};
-});
-
-async function runHunter(){
-  const brands=[...document.querySelectorAll('#h-brands .chip.on')].map(c=>c.dataset.v);
-  const budget=parseFloat(document.getElementById('h-budget').value)||80;
-  const minMult=parseFloat(document.getElementById('h-margin').value)||2.0;
-  const conds=[...document.querySelectorAll('#h-cond .chip.on')].map(c=>c.dataset.v);
-  const cat=document.getElementById('h-cat').querySelector('.on').dataset.v;
-  if(!brands.length){showErr('h-err','Выбери хотя бы один бренд');return;}
-  hideErr('h-err');
-  document.getElementById('h-loader').classList.add('on');
-  document.getElementById('h-results').innerHTML='';
-  document.getElementById('h-btn').disabled=true;
-  animSteps('hs',5,[0,2500,5500,8500,11000]);
-  const catLabel=cat==='bag'?'сумки/аксессуары':'часы';
-  const maxJpy=Math.round(budget/0.0061);
-  const prompt='Ты — эксперт по перепродаже дизайнерских вещей. Найди выгодные лоты.\n\nПАРАМЕТРЫ:\n- Бренды: '+brands.join(', ')+'\n- Категория: '+catLabel+'\n- Макс. бюджет: €'+budget+' (≈ ¥'+maxJpy+')\n- Мин. мультипликатор: '+minMult+'x\n- Состояния: '+conds.join(', ')+'\n- Продажа: ТОЛЬКО Vestiaire Collective EU и Vinted EU\n- Доставка: €25 фикс\n\nЗАДАЧА:\n1. web_search текущих аукционов Buyee/Yahoo Japan по каждому бренду — "[бренд] [категория] buyee auction"\n2. Для каждого лота web_search цены на Vestiaire EU и Vinted EU\n3. Рассчитай маржу: net = sell × 0.86, mult = net / (cost + 25)\n4. Топ-5 лотов с mult ≥ '+minMult+'x\n\nОтвет ТОЛЬКО JSON:\n{"opportunities":[{"item_name":"...","current_bid_jpy":4500,"current_bid_eur":27,"buyee_url":"https://...","est_sell_eur":155,"max_bid_jpy":7200,"multiplier":2.1,"mult_str":"2.1x","cond_estimate":"A","sell_speed":"быстро (1-2 нед)","reason":"...","verdict":"БРАТЬ"}],"search_summary":"резюме на русском"}';
+  const priceHint=isDirectItem?'Это прямая покупка — цена фиксированная (не торг). current_jpy = цена.':'Это аукцион — найди текущую ставку.';
+  const prompt='Анализ лота для перепродажи в Европе.\n\nURL: '+url+'\n'+priceHint+'\nКатегория: '+catLabel+' | Бренд: '+brandLabel+' | Состояние: '+COND_LABELS[cond]+' (скидка '+(disc*100).toFixed(0)+'%)\n'+(manualOn&&jpyManual?'Цена: ¥'+jpyManual:'Цена: узнай по URL')+'\nДоставка: €25 | Vestiaire EU комиссия 14% | Vinted EU комиссия 5%\n'+(extra?'Доп: '+extra:'')+'\n\nСДЕЛАЙ РОВНО 3 ПОИСКА:\n1. "'+url.slice(0,80)+'" — найди название товара и цену в иенах + курс JPY EUR\n2. "[бренд] [модель] vestiaire" — мин.цена EU, кол-во листингов, ссылка на самый дешёвый\n3. "[бренд] [модель] vinted.de OR vinted.fr" — мин.цена EU, ссылка\n\nФормулы: adjusted=sell*(1-'+disc+') | net=adjusted*0.86 | max_eur=(net-25)/2 | max_jpy=max_eur/rate | mult=net/(buy_eur+25)\nВердикт: БРАТЬ>=1.9 | РИСКОВАННО 1.5-1.89 | НЕ БРАТЬ<1.5\n\nВЫВЕДИ ТОЛЬКО JSON (без слов до и после, без markdown):\n{"item_name":"","item_desc":"","verdict":"","verdict_reason":"","rate":0.006,"current_jpy":0,"current_eur":0,"max_bid_jpy":0,"max_bid_eur":0,"multiplier_str":"","multiplier_num":0,"realistic_sell":0,"adjusted":0,"net_vc":0,"cheapest_vc_price":0,"cheapest_vc_cond":"","cheapest_vc_url":"","cheapest_vc_desc":"","count_vc":"","sold_avg_vc":0,"cheapest_vinted_price":0,"cheapest_vinted_url":"","cheapest_vinted_desc":"","competition":"","sell_speed":"","best_platform":"","analysis":""}'
   try{
     const d=await callClaude(prompt);
     finishSteps('hs',5);
