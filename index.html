@@ -670,17 +670,36 @@ async function callClaude(prompt,imgs){
     },
     body:JSON.stringify({
       model:'claude-sonnet-4-20250514',
-      max_tokens:1500,
-      tools:[{type:'web_search_20250305',name:'web_search'}],
+      max_tokens:1200,
+      tools:[{type:'web_search_20250305',name:'web_search',max_uses:5}],
       messages:[{role:'user',content}]
     })
   });
   const data=await res.json();
   if(!res.ok)throw new Error(data.error?.message||'API error '+res.status);
-  const txt=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
-  const m=txt.match(/\{[\s\S]*\}/);
-  if(!m)throw new Error('Не удалось распарсить ответ ИИ');
-  return JSON.parse(m[0]);
+  // Собираем весь текст из всех блоков
+  const allText=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
+  // Ищем JSON — пробуем найти последний (самый полный) объект
+  const matches=[...allText.matchAll(/\{[\s\S]*?\}(?=\s*$|\s*\n\s*[^{])/g)];
+  let parsed=null;
+  // Пробуем все найденные куски от последнего к первому
+  const allMatches=[...allText.matchAll(/\{[\s\S]*\}/g)];
+  for(let i=allMatches.length-1;i>=0;i--){
+    try{
+      parsed=JSON.parse(allMatches[i][0]);
+      if(parsed&&(parsed.verdict||parsed.opportunities))break;
+      parsed=null;
+    }catch(e){parsed=null;}
+  }
+  if(!parsed){
+    // Последняя попытка — ищем между ```json и ```
+    const codeMatch=allText.match(/```(?:json)?\s*(\{[\s\S]*?\})\s*```/);
+    if(codeMatch){
+      try{parsed=JSON.parse(codeMatch[1]);}catch(e){}
+    }
+  }
+  if(!parsed)throw new Error('ИИ не вернул данные в нужном формате. Попробуй ещё раз — иногда нужно 2-3 попытки.');
+  return parsed;
 }
 
 async function runAnalyzer(){
