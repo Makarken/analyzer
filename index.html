@@ -282,7 +282,7 @@ select.fi option{background:#0d0d12}
   <div class="card" style="padding:24px">
     <div class="lbl">Ссылка на лот Buyee</div>
     <div class="url-row" style="margin-bottom:8px">
-      <input type="text" class="url-fi" id="a-url" placeholder="https://buyee.jp/item/yahoo/auction/...">
+      <input type="text" class="url-fi" id="a-url" placeholder="https://buyee.jp/item/... (любой тип ссылки Buyee)">
       <button class="url-paste" onclick="doPaste('a-url')">Вставить</button>
     </div>
     <div class="manual-toggle" id="manualToggle" onclick="toggleManual()">
@@ -669,7 +669,7 @@ async function callClaude(prompt,imgs){
       'anthropic-version':'2023-06-01'
     },
     body:JSON.stringify({
-      model:'claude-sonnet-4-20250514',
+      model:'claude-haiku-4-5-20251001',
       max_tokens:1200,
       tools:[{type:'web_search_20250305',name:'web_search',max_uses:5}],
       messages:[{role:'user',content}]
@@ -720,7 +720,9 @@ async function runAnalyzer(){
   animSteps('as',6,STEP_T);
   const catLabel=cat==='bag'?'дизайнерская сумка / аксессуар':'дизайнерские часы';
   const brandLabel=BRAND_INFO[brandKey]?.label||'неизвестен';
-  const prompt='Ты — эксперт по перепродаже дизайнерских вещей на европейском рынке.\n\nЛОТ: '+(url||'URL не указан')+'\nКАТЕГОРИЯ: '+catLabel+'\nБРЕНД: '+brandLabel+'\nСОСТОЯНИЕ: '+COND_LABELS[cond]+' → скидка −'+(disc*100).toFixed(0)+'%\n'+(manualOn&&jpyManual?'ЦЕНА BUYEE: ¥'+jpyManual+' (ручной ввод)':'ЦЕНА: определи из листинга через web_search')+'\n'+(manualOn&&rateManual?'КУРС ¥/€: '+rateManual:'КУРС ¥/€: найди актуальный через web_search')+'\nДОСТАВКА: €25 фикс\nПЛАТФОРМЫ: ТОЛЬКО Vestiaire Collective EU (комиссия 14%) и Vinted EU (DE/FR/ES/PL, комиссия 5%)\n'+(extra?'ДОП: '+extra:'')+'\n\nЗАДАЧИ (web_search):\n1. '+(url?'Прочитай лот "'+url+'" — бренд, модель, текущая ставка в ¥':'Используй данные выше')+'\n2. Найди актуальный курс JPY/EUR\n3. Активные листинги этой модели на Vestiaire EU → мин.цена, состояние, кол-во, ссылка\n4. Проданные (sold) на Vestiaire → средняя цена\n5. Активные листинги Vinted EU → мин.цена, ссылка\n\nРАСЧЁТЫ:\n- realistic_sell: цена быстрой продажи\n- adjusted: realistic_sell × (1−'+disc+')\n- net_vc: adjusted × 0.86\n- max_bid_eur: (net_vc − 25) / 2\n- max_bid_jpy: max_bid_eur / rate\n- multiplier: net_vc / (current_eur + 25)\n- verdict: БРАТЬ ≥1.9x · РИСКОВАННО 1.5–1.89x · НЕ БРАТЬ <1.5x\n\nОтвет ТОЛЬКО JSON:\n{"item_name":"Бренд Модель","item_desc":"цвет/материал","verdict":"БРАТЬ","verdict_reason":"кратко","rate":0.0061,"current_jpy":4500,"current_eur":27.5,"max_bid_jpy":7200,"max_bid_eur":43.9,"multiplier_str":"2.1x","multiplier_num":2.1,"realistic_sell":155,"adjusted":120,"net_vc":103,"cheapest_vc_price":180,"cheapest_vc_cond":"A","cheapest_vc_url":"https://...","cheapest_vc_desc":"описание","count_vc":"~11","sold_avg_vc":145,"cheapest_vinted_price":120,"cheapest_vinted_url":"https://...","cheapest_vinted_desc":"описание","competition":"средняя","sell_speed":"средне (3-4 нед)","best_platform":"Vestiaire","analysis":"4-6 предложений на русском"}';
+  const isDirectItem=url&&url.includes('jdirectitems');
+  const urlTypeHint=isDirectItem?'ТИП: прямая покупка (фиксированная цена, не аукцион). current_jpy = цена покупки, max_bid_jpy = та же цена.':'ТИП: аукцион — найди текущую ставку.';
+  const prompt='Ты — эксперт по перепродаже дизайнерских вещей.\n\nЛОТ: '+(url||'URL не указан')+'\n'+urlTypeHint+'\nКАТЕГОРИЯ: '+catLabel+'\nБРЕНД: '+brandLabel+'\nСОСТОЯНИЕ: '+COND_LABELS[cond]+' скидка '+(disc*100).toFixed(0)+'%\n'+(manualOn&&jpyManual?'ЦЕНА: ¥'+jpyManual:'ЦЕНА: найди по URL через web_search')+'\n'+(manualOn&&rateManual?'КУРС: '+rateManual:'КУРС JPY/EUR: найди через web_search')+'\nДОСТАВКА: 25 EUR фикс\nПРОДАЖА: Vestiaire EU (14%) и Vinted EU (5%) — только Европа\n'+(extra?'ДОП: '+extra:'')+'\n\nРОВНО 5 ПОИСКОВ (не больше!):\n1. Найди товар по URL: '+url+' — бренд, модель, цена в иенах\n2. Курс JPY EUR сегодня\n3. [бренд модель] vestiaire europe — мин.цена активных, кол-во, ссылка\n4. [бренд модель] sold vestiaire — средняя цена продаж\n5. [бренд модель] vinted — мин.цена EU, ссылка\n\nФОРМУЛЫ: adjusted=realistic_sell*(1-'+disc+'), net_vc=adjusted*0.86, max_bid_eur=(net_vc-25)/2, max_bid_jpy=max_bid_eur/rate, multiplier=net_vc/(current_eur+25)\nВЕРДИКТ: БРАТЬ>=1.9x РИСКОВАННО 1.5-1.89x НЕ БРАТЬ<1.5x\n\nТОЛЬКО JSON без лишнего текста:\n{"item_name":"Бренд Модель","item_desc":"цвет/материал","verdict":"БРАТЬ","verdict_reason":"кратко","rate":0.0061,"current_jpy":4500,"current_eur":27.5,"max_bid_jpy":7200,"max_bid_eur":43.9,"multiplier_str":"2.1x","multiplier_num":2.1,"realistic_sell":155,"adjusted":120,"net_vc":103,"cheapest_vc_price":180,"cheapest_vc_cond":"A","cheapest_vc_url":"https://...","cheapest_vc_desc":"описание","count_vc":"~11","sold_avg_vc":145,"cheapest_vinted_price":120,"cheapest_vinted_url":"https://...","cheapest_vinted_desc":"описание","competition":"средняя","sell_speed":"средне (3-4 нед)","best_platform":"Vestiaire","analysis":"3-4 предложения на русском"}'
   try{
     const d=await callClaude(prompt,photos.length?photos:null);
     finishSteps('as',6);
