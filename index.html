@@ -21,8 +21,6 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(245,200,66,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
-
-/* ── NAV ── */
 .nav{position:sticky;top:0;z-index:100;background:rgba(6,6,8,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--b1)}
 .nav-inner{max-width:860px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:0}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;color:var(--gold);padding:14px 20px 14px 0;border-right:1px solid var(--b1);margin-right:4px;flex-shrink:0}
@@ -33,45 +31,29 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .tab.on{color:var(--gold);border-bottom-color:var(--gold)}
 .tab .badge{position:absolute;top:8px;right:6px;background:var(--gold);color:#000;font-size:8px;font-weight:700;padding:1px 4px;border-radius:2px;min-width:14px;text-align:center;display:none}
 .tab .badge.show{display:block}
-
-/* ── WRAP ── */
 .wrap{max-width:860px;margin:0 auto;padding:36px 20px 80px;position:relative;z-index:1}
-
-/* ── PANELS ── */
-.panel{display:none}
-.panel.on{display:block}
-
-/* ── SECTION CARD ── */
+.panel{display:none}.panel.on{display:block}
 .card{background:var(--s1);border:1px solid var(--b1);margin-bottom:12px;position:relative;overflow:hidden}
 .card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-g),transparent)}
-
-/* ── PAGE TITLES ── */
 .page-hdr{margin-bottom:28px}
 .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,52px);letter-spacing:.04em;line-height:1;color:var(--txt)}
 .page-title em{font-style:normal;color:var(--gold)}
 .page-sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--mid);margin-top:8px;letter-spacing:.04em}
-
-/* ── FORM ELEMENTS ── */
 .lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
 .lbl-opt{color:var(--mid);font-size:8px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .fgroup{display:flex;flex-direction:column;gap:6px}
 .fi,select.fi{background:var(--bg);border:1px solid var(--b2);color:var(--txt);font-family:'DM Mono',monospace;font-size:13px;padding:10px 12px;outline:none;transition:border-color .2s;width:100%;-webkit-appearance:none;appearance:none}
 .fi::placeholder{color:var(--dim)}
 .fi:focus,select.fi:focus{border-color:var(--gold)}
 select.fi{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5'%3E%3Cpath d='M0 0l4.5 5 4.5-5z' fill='%233a3a52'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px}
 select.fi option{background:#0d0d12}
-
-/* URL row */
 .url-row{display:flex}
 .url-fi{flex:1;background:var(--bg);border:1px solid var(--b2);border-right:none;color:var(--txt);font-family:'DM Mono',monospace;font-size:12px;padding:11px 13px;outline:none;transition:border-color .2s;min-width:0}
 .url-fi::placeholder{color:var(--dim)}
 .url-fi:focus{border-color:var(--gold)}
 .url-paste{background:var(--s2);border:1px solid var(--b2);color:var(--mid);font-family:'DM Mono',monospace;font-size:10px;padding:0 13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .url-paste:hover{background:var(--b2);color:var(--txt)}
-
-/* Manual price toggle */
 .manual-toggle{display:flex;align-items:center;gap:8px;margin-top:8px;cursor:pointer;width:fit-content}
 .toggle-box{width:28px;height:15px;background:var(--b2);border-radius:8px;position:relative;transition:background .2s;flex-shrink:0}
 .toggle-box::after{content:'';position:absolute;top:2px;left:2px;width:11px;height:11px;background:var(--mid);border-radius:50%;transition:all .2s}
@@ -80,20 +62,14 @@ select.fi option{background:#0d0d12}
 .toggle-lbl{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid);letter-spacing:.06em}
 .manual-fields{display:none;margin-top:12px}
 .manual-fields.show{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
-/* Chips */
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{background:var(--bg);border:1px solid var(--b2);color:var(--mid);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.05em;padding:6px 10px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .chip:hover{border-color:var(--gold);color:var(--gold)}
 .chip.on{background:var(--gold-d);border-color:var(--gold);color:var(--gold)}
-
-/* Cat buttons */
 .cat-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .cat-b{background:var(--bg);border:1px solid var(--b2);color:var(--mid);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;padding:10px;text-align:center;cursor:pointer;transition:all .15s}
 .cat-b:hover{border-color:var(--gold);color:var(--gold)}
 .cat-b.on{background:var(--gold-d);border-color:var(--gold);color:var(--gold)}
-
-/* Photo zone */
 .photo-zone{border:1px dashed var(--b2);background:var(--bg);padding:16px;cursor:pointer;transition:border-color .2s;text-align:center;position:relative;overflow:hidden}
 .photo-zone:hover,.photo-zone.drag{border-color:var(--gold)}
 .photo-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
@@ -102,8 +78,6 @@ select.fi option{background:#0d0d12}
 .tdel{position:relative;display:inline-block}
 .thumb{width:52px;height:52px;object-fit:cover;border:1px solid var(--b2)}
 .tdel-x{position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:var(--red);color:#fff;font-size:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;font-weight:700}
-
-/* Buttons */
 .btn-gold{background:var(--gold);border:none;color:#000;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.1em;padding:14px 24px;cursor:pointer;transition:opacity .15s,transform .1s;position:relative;overflow:hidden;width:100%}
 .btn-gold::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-100%);transition:transform .4s}
 .btn-gold:hover::after{transform:translateX(100%)}
@@ -112,8 +86,6 @@ select.fi option{background:#0d0d12}
 .btn-ghost{background:transparent;border:1px solid var(--b2);color:var(--mid);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;padding:8px 14px;cursor:pointer;transition:all .15s}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 .btn-sm{padding:6px 11px;font-size:9px}
-
-/* ── LOADER ── */
 .loader{display:none;background:var(--s1);border:1px solid var(--b1);padding:36px 24px}
 .loader.on{display:block}
 .l-in{display:flex;flex-direction:column;align-items:center;gap:16px}
@@ -124,38 +96,24 @@ select.fi option{background:#0d0d12}
 @keyframes rot{to{transform:rotate(360deg)}}
 .lsteps{width:100%;max-width:300px;display:flex;flex-direction:column;gap:5px}
 .lstep{display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);transition:color .25s;letter-spacing:.04em}
-.lstep.done{color:var(--go)}
-.lstep.act{color:var(--txt)}
+.lstep.done{color:var(--go)}.lstep.act{color:var(--txt)}
 .lsi{width:12px;text-align:center;font-size:9px}
-
-/* ── RESULT CARD ── */
 .result{display:none;background:var(--s1);border:1px solid var(--b1);overflow:hidden}
 .result.on{display:block}
-
 .item-bar{padding:14px 22px;border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:12px}
-.item-thumb-img{width:46px;height:46px;object-fit:cover;border:1px solid var(--b2);display:none;flex-shrink:0}
-.item-thumb-img.show{display:block}
 .item-bar-info{flex:1;min-width:0}
 .item-bar-name{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.05em;color:var(--txt)}
 .item-bar-cond{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid);margin-top:2px}
-
-/* Verdict */
 .verd-row{padding:18px 22px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
 .verd-row::before{content:'';position:absolute;inset:0;opacity:.07;z-index:0}
-.verd-row.go::before{background:var(--go)}
-.verd-row.warn::before{background:var(--warn)}
-.verd-row.no::before{background:var(--red)}
+.verd-row.go::before{background:var(--go)}.verd-row.warn::before{background:var(--warn)}.verd-row.no::before{background:var(--red)}
 .vl,.vr{position:relative;z-index:1}
 .v-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
 .v-word{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em}
-.verd-row.go .v-word{color:var(--go)}
-.verd-row.warn .v-word{color:var(--warn)}
-.verd-row.no .v-word{color:var(--red)}
+.verd-row.go .v-word{color:var(--go)}.verd-row.warn .v-word{color:var(--warn)}.verd-row.no .v-word{color:var(--red)}
 .v-why{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid);margin-top:3px}
 .v-mult{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--txt);letter-spacing:-.01em;line-height:1;text-align:right}
 .v-mult-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;color:var(--dim);text-align:right;margin-top:2px}
-
-/* BID COMPARISON BAR */
 .bid-compare{padding:16px 22px;border-bottom:1px solid var(--b1)}
 .bc-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
 .bc-bar-wrap{position:relative;height:6px;background:var(--b2);border-radius:3px;margin-bottom:8px}
@@ -164,24 +122,15 @@ select.fi option{background:#0d0d12}
 .bc-labels{display:flex;justify-content:space-between;align-items:center}
 .bc-lbl-cur{font-family:'DM Mono',monospace;font-size:10px;color:var(--soft)}
 .bc-lbl-max{font-family:'DM Mono',monospace;font-size:10px}
-
-/* Stats grid */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--b1)}
-.sc{padding:14px 16px;border-right:1px solid var(--b1)}
-.sc:last-child{border-right:none}
+.sc{padding:14px 16px;border-right:1px solid var(--b1)}.sc:last-child{border-right:none}
 .sc-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
 .sc-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--txt);letter-spacing:.02em}
-.sc-val.go{color:var(--go)}
-.sc-val.warn{color:var(--warn)}
-.sc-val.no{color:var(--red)}
+.sc-val.go{color:var(--go)}.sc-val.warn{color:var(--warn)}.sc-val.no{color:var(--red)}
 .sc-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);margin-top:1px}
-
-/* Brand badge */
 .brand-badge{padding:10px 22px;border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:10px;background:var(--gold-d)}
 .brand-badge-name{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.08em;color:var(--gold)}
 .brand-badge-note{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid)}
-
-/* Cheapest section */
 .cheap-sec{padding:0 22px;border-bottom:1px solid var(--b1)}
 .sec-hdr{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);padding:11px 0 8px;border-bottom:1px solid var(--b1)}
 .cheap-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--b1)}
@@ -194,33 +143,21 @@ select.fi option{background:#0d0d12}
 .cheap-desc{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cheap-link{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);text-decoration:none;border-bottom:1px dashed rgba(245,200,66,.3);flex-shrink:0;margin-top:3px;display:block;text-align:right}
 .cheap-link:hover{opacity:.7}
-
-/* Market table */
 .mkt-sec{padding:0 22px;border-bottom:1px solid var(--b1)}
 .mrow{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--b1);gap:12px}
 .mrow:last-child{border-bottom:none}
 .mk{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid);flex-shrink:0}
 .mv{font-family:'DM Mono',monospace;font-size:10px;color:var(--txt);text-align:right;line-height:1.5}
 .mv.g{color:var(--go)}.mv.w{color:var(--warn)}.mv.r{color:var(--red)}.mv.b{color:var(--blue)}
-
-/* Analysis */
 .analysis{padding:18px 22px;border-bottom:1px solid var(--b1)}
 .a-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
 .a-body{font-family:'DM Sans',sans-serif;font-size:12px;color:var(--mid);line-height:1.8}
 .a-body strong{color:var(--txt);font-weight:500}
-
-/* Actions row */
 .act-row{display:flex}
 .act-btn{flex:1;background:transparent;border:none;color:var(--dim);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;padding:12px;cursor:pointer;transition:color .15s;border-right:1px solid var(--b1);text-transform:uppercase}
 .act-btn:last-child{border-right:none}
-.act-btn:hover{color:var(--txt)}
-.act-btn.gold:hover{color:var(--gold)}
-
-/* ── HUNTER ── */
+.act-btn:hover{color:var(--txt)}.act-btn.gold:hover{color:var(--gold)}
 .hunt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.budget-row{display:flex;gap:12px;margin-bottom:16px}
-
-/* Hunter result item */
 .hunt-item{background:var(--s1);border:1px solid var(--b1);margin-bottom:10px;overflow:hidden;transition:border-color .2s}
 .hunt-item:hover{border-color:var(--gold)}
 .hunt-item-hdr{padding:14px 18px;border-bottom:1px solid var(--b1);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
@@ -231,8 +168,7 @@ select.fi option{background:#0d0d12}
 .hunt-verdict.go{background:var(--go-d);color:var(--go);border:1px solid rgba(46,204,136,.2)}
 .hunt-verdict.warn{background:var(--warn-d);color:var(--warn);border:1px solid rgba(240,160,48,.2)}
 .hunt-item-body{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--b1)}
-.hsc{padding:11px 14px;border-right:1px solid var(--b1)}
-.hsc:last-child{border-right:none}
+.hsc{padding:11px 14px;border-right:1px solid var(--b1)}.hsc:last-child{border-right:none}
 .hsc-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
 .hsc-val{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--txt);letter-spacing:.02em}
 .hsc-val.go{color:var(--go)}.hsc-val.warn{color:var(--warn)}
@@ -241,12 +177,9 @@ select.fi option{background:#0d0d12}
 .hunt-links{display:flex;gap:8px}
 .hunt-link{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);text-decoration:none;border-bottom:1px dashed rgba(245,200,66,.3)}
 .hunt-link:hover{opacity:.7}
-
-/* ── WATCHLIST ── */
 .wl-empty{text-align:center;padding:60px 20px;font-family:'DM Mono',monospace;font-size:11px;color:var(--dim)}
 .wl-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:16px;background:var(--s1);border:1px solid var(--b1)}
-.wl-stat{padding:16px;border-right:1px solid var(--b1);text-align:center}
-.wl-stat:last-child{border-right:none}
+.wl-stat{padding:16px;border-right:1px solid var(--b1);text-align:center}.wl-stat:last-child{border-right:none}
 .wl-stat-val{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--gold)}
 .wl-stat-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:2px}
 .wl-item{background:var(--s1);border:1px solid var(--b1);margin-bottom:8px;overflow:hidden}
@@ -267,11 +200,8 @@ select.fi option{background:#0d0d12}
 .wl-note-in:focus{border-color:var(--gold)}
 .wl-url{padding:7px 18px;background:var(--bg)}
 .wl-url a{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);text-decoration:none;border-bottom:1px dashed rgba(245,200,66,.3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;max-width:100%}
-
-/* ── HISTORY ── */
 .hist-stats{display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:16px;background:var(--s1);border:1px solid var(--b1)}
-.hist-stat{padding:16px;border-right:1px solid var(--b1);text-align:center}
-.hist-stat:last-child{border-right:none}
+.hist-stat{padding:16px;border-right:1px solid var(--b1);text-align:center}.hist-stat:last-child{border-right:none}
 .hist-stat-val{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--gold)}
 .hist-stat-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:2px}
 .hist-empty{text-align:center;padding:60px;font-family:'DM Mono',monospace;font-size:11px;color:var(--dim)}
@@ -286,27 +216,30 @@ select.fi option{background:#0d0d12}
 .htd.go{color:var(--go)}.htd.warn{color:var(--warn)}.htd.no{color:var(--red)}
 .verdict-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:5px}
 .verdict-dot.go{background:var(--go)}.verdict-dot.warn{background:var(--warn)}.verdict-dot.no{background:var(--red)}
-
-/* ── ERROR ── */
+.api-banner{background:var(--red-d);border:1px solid rgba(232,48,80,.3);padding:14px 20px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.api-banner.ok{background:var(--go-d);border-color:rgba(46,204,136,.3)}
+.api-banner-icon{font-size:18px;flex-shrink:0}
+.api-banner-txt{font-family:'DM Mono',monospace;font-size:11px;color:var(--txt);flex:1}
+.api-banner-txt span{color:var(--red)}
+.api-banner.ok .api-banner-txt span{color:var(--go)}
+.api-key-row{display:flex;gap:0;margin-top:8px}
+.api-key-in{flex:1;background:var(--bg);border:1px solid var(--b2);border-right:none;color:var(--txt);font-family:'DM Mono',monospace;font-size:12px;padding:9px 12px;outline:none;transition:border-color .2s}
+.api-key-in:focus{border-color:var(--gold)}
+.api-key-save{background:var(--gold);border:none;color:#000;font-family:'DM Mono',monospace;font-size:11px;font-weight:700;padding:0 16px;cursor:pointer;white-space:nowrap}
 .err{display:none;background:var(--red-d);border:1px solid rgba(232,48,80,.2);padding:12px 16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--red);margin-top:10px;line-height:1.5}
 .err.on{display:block}
-
-/* ── FOOTER ── */
-.foot{margin-top:32px;padding-top:14px;border-top:1px solid var(--b1);font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:.04em;line-height:1.6;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap}
-
-/* ── RESPONSIVE ── */
+.foot{margin-top:32px;padding-top:14px;border-top:1px solid var(--b1);font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:.04em;line-height:1.6;display:flex;justify-content:space-between;align-items:center}
 @media(max-width:600px){
-  .row2,.row3{grid-template-columns:1fr}
+  .row2{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr 1fr}
   .stats .sc:nth-child(2){border-right:none}
-  .stats .sc:nth-child(3){border-right:none;border-top:1px solid var(--b1)}
-  .stats .sc:nth-child(4){border-right:none;border-top:1px solid var(--b1)}
+  .stats .sc:nth-child(3),.stats .sc:nth-child(4){border-right:none;border-top:1px solid var(--b1)}
   .hunt-item-body{grid-template-columns:1fr 1fr}
   .wl-item-body{grid-template-columns:1fr 1fr}
   .hist-thead,.hist-row{grid-template-columns:2fr 1fr 1fr 80px}
   .hist-thead .hist-th:nth-child(3),.hist-thead .hist-th:nth-child(5),
   .hist-row .htd:nth-child(3),.hist-row .htd:nth-child(5){display:none}
-  .hist-stats,.hist-stats{grid-template-columns:1fr 1fr}
+  .hist-stats{grid-template-columns:1fr 1fr}
   .hunt-grid{grid-template-columns:1fr}
   .nav-logo span{display:none}
   .tab{font-size:9px;padding:13px 10px}
@@ -314,8 +247,6 @@ select.fi option{background:#0d0d12}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <div class="nav-logo">BuyeePro <span>EU MARKET</span></div>
@@ -327,16 +258,27 @@ select.fi option{background:#0d0d12}
     </div>
   </div>
 </nav>
-
 <div class="wrap">
 
-<!-- ═══════════ ANALYZER ═══════════ -->
+<!-- API KEY BANNER -->
+<div class="api-banner" id="apiBanner">
+  <div class="api-banner-icon">🔑</div>
+  <div class="api-banner-txt">
+    <span>API ключ не введён</span> — инструмент не будет работать<br>
+    Получи ключ на <strong>console.anthropic.com</strong> → API Keys → Create Key
+    <div class="api-key-row">
+      <input type="password" class="api-key-in" id="apiKeyIn" placeholder="sk-ant-api03-...">
+      <button class="api-key-save" onclick="saveApiKey()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- ANALYZER -->
 <div class="panel on" id="panel-analyzer">
   <div class="page-hdr">
     <div class="page-title">Deal <em>Analyzer</em></div>
     <div class="page-sub">Вставь ссылку · ИИ парсит Buyee, смотрит рынок Европы, считает максимальный бид</div>
   </div>
-
   <div class="card" style="padding:24px">
     <div class="lbl">Ссылка на лот Buyee</div>
     <div class="url-row" style="margin-bottom:8px">
@@ -358,7 +300,6 @@ select.fi option{background:#0d0d12}
       </div>
     </div>
   </div>
-
   <div class="card" style="padding:24px">
     <div style="margin-bottom:16px">
       <div class="lbl" style="margin-bottom:10px">Категория</div>
@@ -367,7 +308,6 @@ select.fi option{background:#0d0d12}
         <div class="cat-b" data-v="watch">⌚ Часы</div>
       </div>
     </div>
-
     <div class="row2" style="margin-bottom:16px">
       <div class="fgroup">
         <div class="lbl">Бренд</div>
@@ -398,29 +338,24 @@ select.fi option{background:#0d0d12}
         </select>
       </div>
     </div>
-
     <div class="fgroup" style="margin-bottom:16px">
-      <div class="lbl">Фото лота <span class="lbl-opt">необяз. — помогает точнее определить модель</span></div>
+      <div class="lbl">Фото лота <span class="lbl-opt">необяз.</span></div>
       <div class="photo-zone" id="photoZone">
         <input type="file" id="photoIn" accept="image/*" multiple onchange="handlePhotos(this.files)">
-        <div class="photo-zone-txt" id="photoTxt"><span style="color:var(--mid)">+ Добавить фото</span>&nbsp; jpg / png · до 4 шт</div>
+        <div class="photo-zone-txt" id="photoTxt"><span style="color:var(--mid)">+ Добавить фото</span> · jpg/png · до 4 шт</div>
         <div class="thumbs" id="thumbs"></div>
       </div>
     </div>
-
     <div class="fgroup" style="margin-bottom:20px">
       <div class="lbl">Доп. инфо <span class="lbl-opt">необяз.</span></div>
-      <input type="text" class="fi" id="a-extra" placeholder="без ремня, царапина на замке, оригинальный пыльник...">
+      <input type="text" class="fi" id="a-extra" placeholder="без ремня, царапина на замке...">
     </div>
-
     <button class="btn-gold" id="a-btn" onclick="runAnalyzer()">⚡ Анализировать</button>
   </div>
-
-  <!-- LOADER -->
   <div class="loader" id="a-loader">
     <div class="l-in">
       <div class="spin"><div class="sr"></div><div class="sr r1"></div><div class="sr r2"></div></div>
-      <div class="lsteps" id="a-steps">
+      <div class="lsteps">
         <div class="lstep" id="as0"><span class="lsi">○</span>Читаю лот Buyee</div>
         <div class="lstep" id="as1"><span class="lsi">○</span>Получаю курс ¥/€</div>
         <div class="lstep" id="as2"><span class="lsi">○</span>Ищу активные листинги (VC)</div>
@@ -430,18 +365,13 @@ select.fi option{background:#0d0d12}
       </div>
     </div>
   </div>
-
-  <!-- RESULT -->
   <div class="result" id="a-result">
-
     <div class="item-bar">
-      <img class="item-thumb-img" id="a-thumb" src="" alt="">
       <div class="item-bar-info">
         <div class="item-bar-name" id="a-item-name">—</div>
         <div class="item-bar-cond" id="a-item-cond">—</div>
       </div>
     </div>
-
     <div class="verd-row" id="a-verd">
       <div class="vl">
         <div class="v-tag">Вердикт</div>
@@ -453,63 +383,51 @@ select.fi option{background:#0d0d12}
         <div class="v-mult-lbl">мультипликатор</div>
       </div>
     </div>
-
-    <!-- BID COMPARISON BAR -->
-    <div class="bid-compare" id="a-bid-compare">
+    <div class="bid-compare">
       <div class="bc-lbl">Текущая ставка vs Максимальный бид</div>
-      <div class="bc-bar-wrap">
-        <div class="bc-bar-fill" id="a-bar-fill" style="width:0%;background:var(--go)"></div>
-      </div>
+      <div class="bc-bar-wrap"><div class="bc-bar-fill" id="a-bar-fill" style="width:0%;background:var(--go)"></div></div>
       <div class="bc-labels">
         <div class="bc-lbl-cur">Сейчас: <strong id="a-cur-jpy">—</strong> (<span id="a-cur-eur">—</span>)</div>
         <div class="bc-lbl-max">Макс. бид: <strong id="a-max-jpy" style="color:var(--gold)">—</strong> (<span id="a-max-eur">—</span>)</div>
       </div>
     </div>
-
     <div class="stats">
       <div class="sc"><div class="sc-lbl">Макс. бид ¥</div><div class="sc-val" id="a-s0">—</div><div class="sc-sub" id="a-s0s">—</div></div>
       <div class="sc"><div class="sc-lbl">Цель продажи</div><div class="sc-val" id="a-s1">—</div><div class="sc-sub">реальная</div></div>
       <div class="sc"><div class="sc-lbl">Чисто (VC)</div><div class="sc-val" id="a-s2">—</div><div class="sc-sub">после комиссии</div></div>
       <div class="sc"><div class="sc-lbl">Конкуренция</div><div class="sc-val" id="a-s3">—</div><div class="sc-sub" id="a-s3s">—</div></div>
     </div>
-
     <div class="brand-badge" id="a-brand-badge" style="display:none">
       <span class="brand-badge-name" id="a-brand-name">—</span>
       <span class="brand-badge-note" id="a-brand-note">—</span>
     </div>
-
     <div class="cheap-sec">
       <div class="sec-hdr">Самые дешёвые активные (Европа)</div>
       <div id="a-cheap"></div>
     </div>
-
     <div class="mkt-sec">
       <div class="sec-hdr">Данные рынка</div>
       <div id="a-mkt"></div>
     </div>
-
     <div class="analysis">
       <div class="a-lbl">Анализ</div>
       <div class="a-body" id="a-analysis">—</div>
     </div>
-
     <div class="act-row">
       <button class="act-btn gold" onclick="addToWatchlist()">+ В Watchlist</button>
       <button class="act-btn" onclick="copyAnalysis()">Копировать</button>
       <button class="act-btn" onclick="resetAnalyzer()">← Сброс</button>
     </div>
   </div>
-
   <div class="err" id="a-err"></div>
 </div>
 
-<!-- ═══════════ HUNTER ═══════════ -->
+<!-- HUNTER -->
 <div class="panel" id="panel-hunter">
   <div class="page-hdr">
     <div class="page-title">Deal <em>Hunter</em></div>
     <div class="page-sub">ИИ сам ищет выгодные аукционы на Buyee по твоим параметрам</div>
   </div>
-
   <div class="card" style="padding:24px">
     <div style="margin-bottom:18px">
       <div class="lbl" style="margin-bottom:10px">Бренды для поиска</div>
@@ -528,7 +446,6 @@ select.fi option{background:#0d0d12}
         <div class="chip" data-v="Seiko">Seiko</div>
       </div>
     </div>
-
     <div class="hunt-grid">
       <div class="fgroup">
         <div class="lbl">Категория</div>
@@ -537,24 +454,21 @@ select.fi option{background:#0d0d12}
           <div class="cat-b" data-v="watch">⌚ Часы</div>
         </div>
       </div>
-      <div>
-        <div class="row2">
-          <div class="fgroup">
-            <div class="lbl">Макс. бюджет (€)</div>
-            <input type="number" class="fi" id="h-budget" placeholder="80" value="80">
-          </div>
-          <div class="fgroup">
-            <div class="lbl">Мин. маржа</div>
-            <select class="fi" id="h-margin">
-              <option value="1.5">1.5x +</option>
-              <option value="2.0" selected>2.0x +</option>
-              <option value="2.5">2.5x +</option>
-            </select>
-          </div>
+      <div class="row2">
+        <div class="fgroup">
+          <div class="lbl">Макс. бюджет (€)</div>
+          <input type="number" class="fi" id="h-budget" value="80">
+        </div>
+        <div class="fgroup">
+          <div class="lbl">Мин. маржа</div>
+          <select class="fi" id="h-margin">
+            <option value="1.5">1.5x+</option>
+            <option value="2.0" selected>2.0x+</option>
+            <option value="2.5">2.5x+</option>
+          </select>
         </div>
       </div>
     </div>
-
     <div class="fgroup" style="margin-bottom:20px">
       <div class="lbl">Состояние — принимать</div>
       <div class="chips" id="h-cond">
@@ -564,14 +478,12 @@ select.fi option{background:#0d0d12}
         <div class="chip" data-v="B">B</div>
       </div>
     </div>
-
     <button class="btn-gold" id="h-btn" onclick="runHunter()">🔍 Найти выгодные лоты</button>
   </div>
-
   <div class="loader" id="h-loader">
     <div class="l-in">
       <div class="spin"><div class="sr"></div><div class="sr r1"></div><div class="sr r2"></div></div>
-      <div class="lsteps" id="h-steps">
+      <div class="lsteps">
         <div class="lstep" id="hs0"><span class="lsi">○</span>Ищу аукционы на Yahoo Japan / Buyee</div>
         <div class="lstep" id="hs1"><span class="lsi">○</span>Проверяю цены на Vestiaire EU</div>
         <div class="lstep" id="hs2"><span class="lsi">○</span>Проверяю Vinted EU</div>
@@ -580,21 +492,20 @@ select.fi option{background:#0d0d12}
       </div>
     </div>
   </div>
-
   <div id="h-results"></div>
   <div class="err" id="h-err"></div>
 </div>
 
-<!-- ═══════════ WATCHLIST ═══════════ -->
+<!-- WATCHLIST -->
 <div class="panel" id="panel-watchlist">
   <div class="page-hdr">
     <div class="page-title">Watch<em>list</em></div>
-    <div class="page-sub">Лоты которые ты отслеживаешь — сохранены локально</div>
+    <div class="page-sub">Лоты которые ты отслеживаешь — сохранены локально в браузере</div>
   </div>
   <div id="wl-content"></div>
 </div>
 
-<!-- ═══════════ HISTORY ═══════════ -->
+<!-- HISTORY -->
 <div class="panel" id="panel-history">
   <div class="page-hdr">
     <div class="page-title">Исто<em>рия</em></div>
@@ -607,107 +518,104 @@ select.fi option{background:#0d0d12}
   <span>BuyeePro · только Европа · Vestiaire + Vinted</span>
   <span>~€0.05–0.15 / анализ</span>
 </div>
-
-</div><!-- /wrap -->
+</div>
 
 <script>
-// ════════════════════════════════════════
-// STATE & STORAGE
-// ════════════════════════════════════════
-const LS_WL = 'bp_watchlist_v2';
-const LS_HIST = 'bp_history_v2';
+// ══════════════════════════════════════
+// ★ ВСТАВЬ СЮДА СВОЙ API КЛЮЧ ★
+// Получить: console.anthropic.com → API Keys → Create Key
+// ══════════════════════════════════════
+const LS_KEY = 'bp_apikey';
+let API_KEY = localStorage.getItem(LS_KEY) || '';
 
+function saveApiKey() {
+  const v = document.getElementById('apiKeyIn').value.trim();
+  if (!v.startsWith('sk-ant-')) { alert('Неверный ключ — должен начинаться с sk-ant-'); return; }
+  API_KEY = v;
+  localStorage.setItem(LS_KEY, v);
+  updateApiBanner();
+}
+
+function updateApiBanner() {
+  const b = document.getElementById('apiBanner');
+  if (API_KEY && API_KEY.startsWith('sk-ant-')) {
+    b.className = 'api-banner ok';
+    b.innerHTML = '<div class="api-banner-icon">✅</div><div class="api-banner-txt"><span>API ключ сохранён</span> · инструмент готов к работе · <button onclick="clearKey()" style="background:transparent;border:none;color:var(--mid);font-family:\'DM Mono\',monospace;font-size:10px;cursor:pointer;text-decoration:underline">сменить ключ</button></div>';
+  }
+}
+
+function clearKey() {
+  API_KEY = ''; localStorage.removeItem(LS_KEY);
+  location.reload();
+}
+
+// STATE
+const LS_WL = 'bp_wl_v2', LS_HIST = 'bp_hist_v2';
 function saveWL(d){try{localStorage.setItem(LS_WL,JSON.stringify(d));}catch(e){}}
-function loadWL(){try{return JSON.parse(localStorage.getItem(LS_WL))||[];}catch(e){return [];}}
+function loadWL(){try{return JSON.parse(localStorage.getItem(LS_WL))||[];}catch(e){return[];}}
 function saveHist(d){try{localStorage.setItem(LS_HIST,JSON.stringify(d));}catch(e){}}
-function loadHist(){try{return JSON.parse(localStorage.getItem(LS_HIST))||[];}catch(e){return [];}}
+function loadHist(){try{return JSON.parse(localStorage.getItem(LS_HIST))||[];}catch(e){return[];}}
+let watchlist=loadWL(), history=loadHist(), photos=[], lastResult=null;
 
-let watchlist = loadWL();
-let history = loadHist();
-let photos = [];
-let lastResult = null;
-
-// ════════════════════════════════════════
-// BRAND INTELLIGENCE
-// ════════════════════════════════════════
-const BRAND_INFO = {
-  chanel:    {label:'Chanel',note:'Растёт в цене, уходит быстро — приоритет #1',mult:1.12,speed:+0.2},
-  hermes:    {label:'Hermès',note:'Высокий спрос, редкость, ценовой пол держится',mult:1.15,speed:+0.2},
-  lv:        {label:'Louis Vuitton',note:'Высокая конкуренция, смотри на конкретную модель',mult:1.0,speed:0},
-  gucci:     {label:'Gucci',note:'Перегруженный рынок, особенно Marmont — осторожно',mult:0.93,speed:-0.1},
-  prada:     {label:'Prada',note:'Стабильный спрос, хорошая ликвидность',mult:1.02,speed:+0.05},
-  dior:      {label:'Dior',note:'Устойчивый спрос, Saddle и Book Tote — быстро',mult:1.05,speed:+0.1},
-  celine:    {label:'Céline',note:'Хороший спрос, особенно на vintage Phoebe Philo',mult:1.05,speed:+0.08},
-  balenciaga:{label:'Balenciaga',note:'Волатильный тренд, риск зависания',mult:0.95,speed:-0.05},
-  rolex:     {label:'Rolex',note:'Быстро уходит, строгая аутентификация VC, проверь референс',mult:1.1,speed:+0.2},
-  cartier:   {label:'Cartier',note:'Стабильный рынок, Love/Trinity — ликвидны',mult:1.06,speed:+0.1},
-  omega:     {label:'Omega',note:'Средний спрос, Seamaster/Speedmaster лучше всего',mult:1.0,speed:0},
-  tagheuer:  {label:'TAG Heuer',note:'Умеренный спрос, конкуренция высокая',mult:0.97,speed:-0.05},
-  seiko:     {label:'Seiko',note:'Нишевый спрос, пресейл сложнее на VC',mult:0.95,speed:-0.1},
-  other:     {label:'',note:'',mult:1.0,speed:0},
+const BRAND_INFO={
+  chanel:{label:'Chanel',note:'Растёт в цене, уходит быстро — приоритет #1'},
+  hermes:{label:'Hermès',note:'Высокий спрос, редкость, ценовой пол держится'},
+  lv:{label:'Louis Vuitton',note:'Высокая конкуренция — смотри на конкретную модель'},
+  gucci:{label:'Gucci',note:'Перегруженный рынок, особенно Marmont — осторожно'},
+  prada:{label:'Prada',note:'Стабильный спрос, хорошая ликвидность'},
+  dior:{label:'Dior',note:'Устойчивый спрос, Saddle и Book Tote — быстро'},
+  celine:{label:'Céline',note:'Хороший спрос, особенно vintage Phoebe Philo'},
+  balenciaga:{label:'Balenciaga',note:'Волатильный тренд, риск зависания'},
+  rolex:{label:'Rolex',note:'Быстро уходит, строгая аутентификация VC'},
+  cartier:{label:'Cartier',note:'Стабильный рынок, Love/Trinity — ликвидны'},
+  omega:{label:'Omega',note:'Средний спрос, Seamaster/Speedmaster лучше всего'},
+  tagheuer:{label:'TAG Heuer',note:'Умеренный спрос, конкуренция высокая'},
+  seiko:{label:'Seiko',note:'Нишевый спрос, пресейл сложнее на VC'},
+  other:{label:'',note:''},
 };
+const COND_DISC={S:0,A:0.125,AB:0.225,B:0.375};
+const COND_LABELS={S:'Как новый (S/N)',A:'Лёгкий износ (A)',AB:'Заметный износ (AB)',B:'Сильный износ (B)'};
 
-const COND_DISC = {S:0, A:0.125, AB:0.225, B:0.375};
-const COND_LABELS = {S:'Как новый (S/N)', A:'Лёгкий износ (A)', AB:'Заметный износ (AB)', B:'Сильный износ (B)'};
-
-// ════════════════════════════════════════
-// TAB SWITCHING
-// ════════════════════════════════════════
 function switchTab(t){
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
   document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
-  document.querySelector(`[data-tab="${t}"]`).classList.add('on');
-  document.getElementById(`panel-${t}`).classList.add('on');
-  if(t==='watchlist') renderWatchlist();
-  if(t==='history') renderHistory();
+  document.querySelector('[data-tab="'+t+'"]').classList.add('on');
+  document.getElementById('panel-'+t).classList.add('on');
+  if(t==='watchlist')renderWatchlist();
+  if(t==='history')renderHistory();
 }
 
-// ════════════════════════════════════════
-// UTILS
-// ════════════════════════════════════════
 async function doPaste(id){
   try{document.getElementById(id).value=await navigator.clipboard.readText();}
   catch(e){document.getElementById(id).focus();}
 }
+
 function fmt(n,p='€'){return n!=null?p+Number(n).toLocaleString('de-DE',{maximumFractionDigits:0}):'—';}
 function fmtJpy(n){return n!=null?'¥'+Math.round(n).toLocaleString('de-DE'):'—';}
 function randId(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
 function showErr(id,m){const e=document.getElementById(id);e.textContent=m;e.classList.add('on');}
 function hideErr(id){document.getElementById(id).classList.remove('on');}
+
 function updateBadges(){
   const wb=document.getElementById('wlBadge');
   const hb=document.getElementById('histBadge');
-  wb.textContent=watchlist.length;
-  wb.className='badge'+(watchlist.length?' show':'');
-  hb.textContent=history.length;
-  hb.className='badge'+(history.length?' show':'');
+  wb.textContent=watchlist.length;wb.className='badge'+(watchlist.length?' show':'');
+  hb.textContent=history.length;hb.className='badge'+(history.length?' show':'');
 }
 
-// Chips multi-select
 document.querySelectorAll('.chips').forEach(g=>{
-  g.querySelectorAll('.chip').forEach(c=>{
-    c.onclick=()=>c.classList.toggle('on');
-  });
+  g.querySelectorAll('.chip').forEach(c=>{c.onclick=()=>c.classList.toggle('on');});
 });
-
-// Cat buttons
 document.querySelectorAll('[id$="-cat"]').forEach(g=>{
   g.querySelectorAll('.cat-b').forEach(b=>{
     b.onclick=()=>{g.querySelectorAll('.cat-b').forEach(x=>x.classList.remove('on'));b.classList.add('on');};
   });
 });
-
-// Manual toggle
 function toggleManual(){
-  const t=document.getElementById('manualToggle');
-  const f=document.getElementById('manualFields');
-  t.classList.toggle('on');
-  f.classList.toggle('show');
+  document.getElementById('manualToggle').classList.toggle('on');
+  document.getElementById('manualFields').classList.toggle('show');
 }
 
-// ════════════════════════════════════════
-// PHOTO HANDLING
-// ════════════════════════════════════════
 function handlePhotos(files){
   [...files].slice(0,4-photos.length).forEach(f=>{
     const r=new FileReader();
@@ -717,7 +625,7 @@ function handlePhotos(files){
 }
 function renderThumbs(){
   document.getElementById('thumbs').innerHTML=photos.map((p,i)=>
-    `<div class="tdel"><img class="thumb" src="${p.preview}"><button class="tdel-x" onclick="removePhoto(${i})">×</button></div>`
+    '<div class="tdel"><img class="thumb" src="'+p.preview+'"><button class="tdel-x" onclick="removePhoto('+i+')">×</button></div>'
   ).join('');
   document.getElementById('photoTxt').style.display=photos.length?'none':'block';
 }
@@ -727,43 +635,39 @@ pz.addEventListener('dragover',e=>{e.preventDefault();pz.classList.add('drag');}
 pz.addEventListener('dragleave',()=>pz.classList.remove('drag'));
 pz.addEventListener('drop',e=>{e.preventDefault();pz.classList.remove('drag');handlePhotos(e.dataTransfer.files);});
 
-// ════════════════════════════════════════
-// STEP ANIMATION
-// ════════════════════════════════════════
-const STEP_T = [0,2200,4500,6800,9200,11500];
-let stepTimer=null;
-function animSteps(prefix, count, timings){
+const STEP_T=[0,2200,4500,6800,9200,11500];
+function animSteps(prefix,count,timings){
   const ss=[];
-  for(let i=0;i<count;i++){const el=document.getElementById(`${prefix}${i}`);if(el)ss.push(el);}
+  for(let i=0;i<count;i++){const el=document.getElementById(prefix+i);if(el)ss.push(el);}
   ss.forEach(s=>{s.querySelector('.lsi').textContent='○';s.classList.remove('done','act');});
   if(ss[0]){ss[0].classList.add('act');ss[0].querySelector('.lsi').textContent='◉';}
-  const tArr=timings||STEP_T;
-  stepTimer=[];
-  tArr.forEach((t,i)=>{
+  (timings||STEP_T).forEach((t,i)=>{
     if(!i)return;
-    stepTimer.push(setTimeout(()=>{
+    setTimeout(()=>{
       if(ss[i-1]){ss[i-1].classList.remove('act');ss[i-1].classList.add('done');ss[i-1].querySelector('.lsi').textContent='✓';}
       if(ss[i]){ss[i].classList.add('act');ss[i].querySelector('.lsi').textContent='◉';}
-    },t));
+    },t);
   });
 }
 function finishSteps(prefix,count){
   for(let i=0;i<count;i++){
-    const s=document.getElementById(`${prefix}${i}`);
+    const s=document.getElementById(prefix+i);
     if(s){s.classList.remove('act');s.classList.add('done');s.querySelector('.lsi').textContent='✓';}
   }
 }
 
-// ════════════════════════════════════════
-// API CALL
-// ════════════════════════════════════════
-async function callClaude(prompt, imgs){
+async function callClaude(prompt,imgs){
+  if(!API_KEY){throw new Error('Введи API ключ в поле вверху страницы');}
   const content=[];
-  if(imgs&&imgs.length) imgs.forEach(p=>content.push({type:'image',source:{type:'base64',media_type:p.type,data:p.data}}));
+  if(imgs&&imgs.length)imgs.forEach(p=>content.push({type:'image',source:{type:'base64',media_type:p.type,data:p.data}}));
   content.push({type:'text',text:prompt});
   const res=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
-    headers:{'Content-Type':'application/json'},
+    headers:{
+      'Content-Type':'application/json',
+      'x-api-key':API_KEY,
+      'anthropic-version':'2023-06-01'
+    },
     body:JSON.stringify({
       model:'claude-sonnet-4-20250514',
       max_tokens:1500,
@@ -772,16 +676,13 @@ async function callClaude(prompt, imgs){
     })
   });
   const data=await res.json();
-  if(!res.ok) throw new Error(data.error?.message||'API error '+res.status);
+  if(!res.ok)throw new Error(data.error?.message||'API error '+res.status);
   const txt=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
   const m=txt.match(/\{[\s\S]*\}/);
-  if(!m) throw new Error('Не удалось распарсить ответ ИИ');
+  if(!m)throw new Error('Не удалось распарсить ответ ИИ');
   return JSON.parse(m[0]);
 }
 
-// ════════════════════════════════════════
-// ANALYZER
-// ════════════════════════════════════════
 async function runAnalyzer(){
   const url=document.getElementById('a-url').value.trim();
   const manualOn=document.getElementById('manualToggle').classList.contains('on');
@@ -791,52 +692,18 @@ async function runAnalyzer(){
   const brandKey=document.getElementById('a-brand').value;
   const extra=document.getElementById('a-extra').value.trim();
   const cat=document.getElementById('a-cat').querySelector('.on').dataset.v;
-  const brandInfo=BRAND_INFO[brandKey];
   const disc=COND_DISC[cond];
-
   if(!url&&!jpyManual){showErr('a-err','Вставь ссылку на лот или включи ручной ввод цены');return;}
   hideErr('a-err');
   document.getElementById('a-loader').classList.add('on');
   document.getElementById('a-result').classList.remove('on');
   document.getElementById('a-btn').disabled=true;
   animSteps('as',6,STEP_T);
-
   const catLabel=cat==='bag'?'дизайнерская сумка / аксессуар':'дизайнерские часы';
-  const brandLabel=brandInfo.label||'неизвестен';
-
-  const prompt=`Ты — эксперт по перепродаже дизайнерских вещей на европейском рынке.
-
-ЛОТ: ${url||'URL не указан'}
-КАТЕГОРИЯ: ${catLabel}
-БРЕНД: ${brandLabel}
-СОСТОЯНИЕ: ${COND_LABELS[cond]} → скидка −${(disc*100).toFixed(0)}%
-${manualOn&&jpyManual?`ЦЕНА BUYEE: ¥${jpyManual} (ручной ввод)`:'ЦЕНА: определи из листинга через web_search'}
-${manualOn&&rateManual?`КУРС ¥/€: ${rateManual}`:'КУРС ¥/€: найди актуальный через web_search'}
-ДОСТАВКА: €25 фикс (Япония→Украина→Испания)
-ПЛАТФОРМЫ: ТОЛЬКО Vestiaire Collective (EU, комиссия 14%) и Vinted (DE/FR/ES/PL, комиссия 5%)
-${extra?'ДОП: '+extra:''}
-
-ЗАДАЧИ (используй web_search):
-1. ${url?`Прочитай лот "${url}" — бренд, модель, текущая ставка в ¥`:'Используй данные выше'}
-2. Найди актуальный курс JPY/EUR
-3. Найди АКТИВНЫЕ листинги этой модели на Vestiaire Collective в Европе → мин. цена, состояние, кол-во, ссылка на самый дешёвый
-4. Найди проданные (sold) на Vestiaire → средняя цена продаж
-5. Найди АКТИВНЫЕ листинги на Vinted EU → мин. цена, ссылка
-
-РАСЧЁТЫ:
-- realistic_sell: реальная цена быстрой продажи (смотри на конкуренцию, не максимум)
-- adjusted: realistic_sell × (1−${disc})
-- net_vc: adjusted × 0.86
-- max_bid_eur: (net_vc − 25) / 2
-- max_bid_jpy: max_bid_eur / rate
-- multiplier: net_vc / (current_eur + 25)
-- verdict: БРАТЬ ≥1.9x · РИСКОВАННО 1.5–1.89x · НЕ БРАТЬ <1.5x
-
-Ответ ТОЛЬКО JSON:
-{"item_name":"Бренд Модель","item_desc":"цвет/материал/размер","verdict":"БРАТЬ","verdict_reason":"кратко почему","rate":0.0061,"current_jpy":4500,"current_eur":27.5,"max_bid_jpy":7200,"max_bid_eur":43.9,"multiplier_str":"2.1x","multiplier_num":2.1,"realistic_sell":155,"adjusted":120,"net_vc":103,"cheapest_vc_price":180,"cheapest_vc_cond":"A","cheapest_vc_url":"https://...","cheapest_vc_desc":"описание","count_vc":"~11","sold_avg_vc":145,"cheapest_vinted_price":120,"cheapest_vinted_url":"https://...","cheapest_vinted_desc":"описание","competition":"средняя","sell_speed":"средне (3-4 нед)","best_platform":"Vestiaire","analysis":"4-6 предложений на русском"}`;
-
+  const brandLabel=BRAND_INFO[brandKey]?.label||'неизвестен';
+  const prompt='Ты — эксперт по перепродаже дизайнерских вещей на европейском рынке.\n\nЛОТ: '+(url||'URL не указан')+'\nКАТЕГОРИЯ: '+catLabel+'\nБРЕНД: '+brandLabel+'\nСОСТОЯНИЕ: '+COND_LABELS[cond]+' → скидка −'+(disc*100).toFixed(0)+'%\n'+(manualOn&&jpyManual?'ЦЕНА BUYEE: ¥'+jpyManual+' (ручной ввод)':'ЦЕНА: определи из листинга через web_search')+'\n'+(manualOn&&rateManual?'КУРС ¥/€: '+rateManual:'КУРС ¥/€: найди актуальный через web_search')+'\nДОСТАВКА: €25 фикс\nПЛАТФОРМЫ: ТОЛЬКО Vestiaire Collective EU (комиссия 14%) и Vinted EU (DE/FR/ES/PL, комиссия 5%)\n'+(extra?'ДОП: '+extra:'')+'\n\nЗАДАЧИ (web_search):\n1. '+(url?'Прочитай лот "'+url+'" — бренд, модель, текущая ставка в ¥':'Используй данные выше')+'\n2. Найди актуальный курс JPY/EUR\n3. Активные листинги этой модели на Vestiaire EU → мин.цена, состояние, кол-во, ссылка\n4. Проданные (sold) на Vestiaire → средняя цена\n5. Активные листинги Vinted EU → мин.цена, ссылка\n\nРАСЧЁТЫ:\n- realistic_sell: цена быстрой продажи\n- adjusted: realistic_sell × (1−'+disc+')\n- net_vc: adjusted × 0.86\n- max_bid_eur: (net_vc − 25) / 2\n- max_bid_jpy: max_bid_eur / rate\n- multiplier: net_vc / (current_eur + 25)\n- verdict: БРАТЬ ≥1.9x · РИСКОВАННО 1.5–1.89x · НЕ БРАТЬ <1.5x\n\nОтвет ТОЛЬКО JSON:\n{"item_name":"Бренд Модель","item_desc":"цвет/материал","verdict":"БРАТЬ","verdict_reason":"кратко","rate":0.0061,"current_jpy":4500,"current_eur":27.5,"max_bid_jpy":7200,"max_bid_eur":43.9,"multiplier_str":"2.1x","multiplier_num":2.1,"realistic_sell":155,"adjusted":120,"net_vc":103,"cheapest_vc_price":180,"cheapest_vc_cond":"A","cheapest_vc_url":"https://...","cheapest_vc_desc":"описание","count_vc":"~11","sold_avg_vc":145,"cheapest_vinted_price":120,"cheapest_vinted_url":"https://...","cheapest_vinted_desc":"описание","competition":"средняя","sell_speed":"средне (3-4 нед)","best_platform":"Vestiaire","analysis":"4-6 предложений на русском"}';
   try{
-    const d=await callClaude(prompt, photos.length?photos:null);
+    const d=await callClaude(prompt,photos.length?photos:null);
     finishSteps('as',6);
     setTimeout(()=>showAnalyzerResult(d,cond,brandKey),300);
   }catch(e){
@@ -849,20 +716,14 @@ ${extra?'ДОП: '+extra:''}
 function showAnalyzerResult(d,cond,brandKey){
   document.getElementById('a-loader').classList.remove('on');
   lastResult=d;
-
-  // Item
   document.getElementById('a-item-name').textContent=d.item_name||'—';
   document.getElementById('a-item-cond').textContent=(d.item_desc?d.item_desc+' · ':'')+COND_LABELS[cond];
-
-  // Verdict
   const vh=document.getElementById('a-verd');
   const cls=d.verdict==='БРАТЬ'?'go':d.verdict==='РИСКОВАННО'?'warn':'no';
   vh.className='verd-row '+cls;
   document.getElementById('a-v-word').textContent=d.verdict||'—';
   document.getElementById('a-v-why').textContent=d.verdict_reason||'';
   document.getElementById('a-mult').textContent=d.multiplier_str||'?';
-
-  // Bid comparison bar
   const cur=d.current_jpy,max=d.max_bid_jpy;
   if(cur&&max){
     const pct=Math.min(100,Math.max(0,(cur/max)*100));
@@ -874,8 +735,6 @@ function showAnalyzerResult(d,cond,brandKey){
   document.getElementById('a-cur-eur').textContent=fmt(d.current_eur);
   document.getElementById('a-max-jpy').textContent=fmtJpy(d.max_bid_jpy);
   document.getElementById('a-max-eur').textContent=fmt(d.max_bid_eur);
-
-  // Stats
   const isGood=d.current_jpy&&d.max_bid_jpy&&d.current_jpy<=d.max_bid_jpy;
   document.getElementById('a-s0').textContent=fmtJpy(d.max_bid_jpy);
   document.getElementById('a-s0').className='sc-val '+(isGood?'go':'warn');
@@ -886,8 +745,6 @@ function showAnalyzerResult(d,cond,brandKey){
   document.getElementById('a-s3').textContent=d.competition||'—';
   document.getElementById('a-s3').className='sc-val '+(compMap[d.competition]||'');
   document.getElementById('a-s3s').textContent=d.count_vc||'';
-
-  // Brand badge
   const bi=BRAND_INFO[brandKey];
   if(bi&&bi.label&&bi.note){
     document.getElementById('a-brand-badge').style.display='flex';
@@ -896,104 +753,43 @@ function showAnalyzerResult(d,cond,brandKey){
   }else{
     document.getElementById('a-brand-badge').style.display='none';
   }
-
-  // Cheapest
   const ci=[];
-  if(d.cheapest_vc_price) ci.push({cls:'vc',plat:'Vestiaire',price:fmt(d.cheapest_vc_price),desc:(d.cheapest_vc_desc||'')+(d.cheapest_vc_cond?' · '+d.cheapest_vc_cond:''),url:d.cheapest_vc_url});
-  if(d.cheapest_vinted_price) ci.push({cls:'vi',plat:'Vinted',price:fmt(d.cheapest_vinted_price),desc:d.cheapest_vinted_desc||'',url:d.cheapest_vinted_url});
-  document.getElementById('a-cheap').innerHTML=ci.length?ci.map(c=>`
-    <div class="cheap-item">
-      <div class="cheap-plat ${c.cls}">${c.plat}</div>
-      <div class="cheap-info"><div class="cheap-price">${c.price}</div><div class="cheap-desc">${c.desc||'—'}</div></div>
-      ${c.url?`<a class="cheap-link" href="${c.url}" target="_blank">открыть →</a>`:''}
-    </div>`).join(''):'<div style="padding:10px 0;font-family:\'DM Mono\',monospace;font-size:10px;color:var(--dim)">Данные не найдены</div>';
-
-  // Market rows
-  const rows=[
-    ['Листингов на Vestiaire',d.count_vc||'—',''],
-    ['Среднее проданных (VC)',fmt(d.sold_avg_vc),''],
-    ['Скорость продажи',d.sell_speed||'—',''],
-    ['Лучшая платформа',d.best_platform||'—','g'],
-    ['Курс ¥/€',d.rate?d.rate.toFixed(4):'—',''],
-    ['Доставка',fmt(25),''],
-  ];
-  document.getElementById('a-mkt').innerHTML=rows.map(([k,v,c])=>
-    `<div class="mrow"><span class="mk">${k}</span><span class="mv${c?' '+c:''}">${v}</span></div>`
-  ).join('');
-
+  if(d.cheapest_vc_price)ci.push({cls:'vc',plat:'Vestiaire',price:fmt(d.cheapest_vc_price),desc:(d.cheapest_vc_desc||'')+(d.cheapest_vc_cond?' · '+d.cheapest_vc_cond:''),url:d.cheapest_vc_url});
+  if(d.cheapest_vinted_price)ci.push({cls:'vi',plat:'Vinted',price:fmt(d.cheapest_vinted_price),desc:d.cheapest_vinted_desc||'',url:d.cheapest_vinted_url});
+  document.getElementById('a-cheap').innerHTML=ci.length?ci.map(c=>'<div class="cheap-item"><div class="cheap-plat '+c.cls+'">'+c.plat+'</div><div class="cheap-info"><div class="cheap-price">'+c.price+'</div><div class="cheap-desc">'+(c.desc||'—')+'</div></div>'+(c.url?'<a class="cheap-link" href="'+c.url+'" target="_blank">открыть →</a>':'')+'</div>').join(''):'<div style="padding:10px 0;font-family:\'DM Mono\',monospace;font-size:10px;color:var(--dim)">Данные не найдены</div>';
+  const rows=[['Листингов на Vestiaire',d.count_vc||'—',''],['Среднее проданных (VC)',fmt(d.sold_avg_vc),''],['Скорость продажи',d.sell_speed||'—',''],['Лучшая платформа',d.best_platform||'—','g'],['Курс ¥/€',d.rate?d.rate.toFixed(4):'—',''],['Доставка','€25','']];
+  document.getElementById('a-mkt').innerHTML=rows.map(([k,v,c])=>'<div class="mrow"><span class="mk">'+k+'</span><span class="mv'+(c?' '+c:'')+'">'+v+'</span></div>').join('');
   document.getElementById('a-analysis').innerHTML=(d.analysis||'—').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
   document.getElementById('a-result').classList.add('on');
   document.getElementById('a-btn').disabled=false;
   document.getElementById('a-result').scrollIntoView({behavior:'smooth',block:'start'});
-
-  // Save to history
-  history.unshift({
-    id:randId(),
-    date:new Date().toLocaleDateString('ru-RU'),
-    item:d.item_name||'Unknown',
-    verdict:d.verdict||'—',
-    mult:d.multiplier_str||'?',
-    mult_num:d.multiplier_num||0,
-    max_bid_jpy:d.max_bid_jpy,
-    max_bid_eur:d.max_bid_eur,
-    current_jpy:d.current_jpy,
-    url:document.getElementById('a-url').value.trim(),
-    cond,
-    analysis:d.analysis||''
-  });
-  if(history.length>30) history=history.slice(0,30);
-  saveHist(history);
-  updateBadges();
+  history.unshift({id:randId(),date:new Date().toLocaleDateString('ru-RU'),item:d.item_name||'Unknown',verdict:d.verdict||'—',mult:d.multiplier_str||'?',mult_num:d.multiplier_num||0,max_bid_jpy:d.max_bid_jpy,max_bid_eur:d.max_bid_eur,current_jpy:d.current_jpy,url:document.getElementById('a-url').value.trim(),cond,analysis:d.analysis||''});
+  if(history.length>30)history=history.slice(0,30);
+  saveHist(history);updateBadges();
 }
 
 function addToWatchlist(){
   if(!lastResult){alert('Сначала проведи анализ');return;}
-  const item={
-    id:randId(),
-    name:lastResult.item_name||'Unknown',
-    max_bid_jpy:lastResult.max_bid_jpy,
-    max_bid_eur:lastResult.max_bid_eur,
-    target_sell:lastResult.realistic_sell,
-    url:document.getElementById('a-url').value.trim(),
-    status:'watch',
-    note:'',
-    date:new Date().toLocaleDateString('ru-RU')
-  };
-  watchlist.unshift(item);
-  saveWL(watchlist);
-  updateBadges();
-  const btn=document.querySelector('.act-btn.gold');
-  btn.textContent='✓ Добавлено';
+  watchlist.unshift({id:randId(),name:lastResult.item_name||'Unknown',max_bid_jpy:lastResult.max_bid_jpy,max_bid_eur:lastResult.max_bid_eur,target_sell:lastResult.realistic_sell,url:document.getElementById('a-url').value.trim(),status:'watch',note:'',date:new Date().toLocaleDateString('ru-RU')});
+  saveWL(watchlist);updateBadges();
+  const btn=document.querySelector('.act-btn.gold');btn.textContent='✓ Добавлено';
   setTimeout(()=>btn.textContent='+ В Watchlist',2000);
 }
-
 function copyAnalysis(){
   if(!lastResult)return;
-  const t=[
-    lastResult.item_name,
-    lastResult.verdict+' · '+lastResult.multiplier_str,
-    'Макс. бид: '+fmtJpy(lastResult.max_bid_jpy)+' ('+fmt(lastResult.max_bid_eur)+')',
-    'Текущая: '+fmtJpy(lastResult.current_jpy),
-    '',lastResult.analysis
-  ].join('\n');
-  navigator.clipboard.writeText(t).catch(()=>{});
+  navigator.clipboard.writeText([lastResult.item_name,lastResult.verdict+' · '+lastResult.multiplier_str,'Макс. бид: '+fmtJpy(lastResult.max_bid_jpy)+' ('+fmt(lastResult.max_bid_eur)+')','Текущая: '+fmtJpy(lastResult.current_jpy),'',lastResult.analysis].join('\n')).catch(()=>{});
 }
-
 function resetAnalyzer(){
   document.getElementById('a-result').classList.remove('on');
   document.getElementById('a-url').value='';
   photos=[];renderThumbs();
-  document.getElementById('a-url').focus();
-  lastResult=null;
+  document.getElementById('a-url').focus();lastResult=null;
   document.getElementById('a-bar-fill').style.width='0%';
 }
 
-// ════════════════════════════════════════
 // HUNTER
-// ════════════════════════════════════════
-let hunterCat='bag';
 document.getElementById('h-cat').querySelectorAll('.cat-b').forEach(b=>{
-  b.onclick=()=>{document.getElementById('h-cat').querySelectorAll('.cat-b').forEach(x=>x.classList.remove('on'));b.classList.add('on');hunterCat=b.dataset.v;};
+  b.onclick=()=>{document.getElementById('h-cat').querySelectorAll('.cat-b').forEach(x=>x.classList.remove('on'));b.classList.add('on');};
 });
 
 async function runHunter(){
@@ -1001,52 +797,16 @@ async function runHunter(){
   const budget=parseFloat(document.getElementById('h-budget').value)||80;
   const minMult=parseFloat(document.getElementById('h-margin').value)||2.0;
   const conds=[...document.querySelectorAll('#h-cond .chip.on')].map(c=>c.dataset.v);
-
+  const cat=document.getElementById('h-cat').querySelector('.on').dataset.v;
   if(!brands.length){showErr('h-err','Выбери хотя бы один бренд');return;}
   hideErr('h-err');
-
   document.getElementById('h-loader').classList.add('on');
   document.getElementById('h-results').innerHTML='';
   document.getElementById('h-btn').disabled=true;
   animSteps('hs',5,[0,2500,5500,8500,11000]);
-
-  const catLabel=hunterCat==='bag'?'сумки/аксессуары':'часы';
+  const catLabel=cat==='bag'?'сумки/аксессуары':'часы';
   const maxJpy=Math.round(budget/0.0061);
-
-  const prompt=`Ты — эксперт по перепродаже дизайнерских вещей. Найди выгодные лоты для закупки.
-
-ПАРАМЕТРЫ:
-- Бренды: ${brands.join(', ')}
-- Категория: ${catLabel}
-- Макс. бюджет: €${budget} (≈ ¥${maxJpy})
-- Мин. целевой мультипликатор: ${minMult}x
-- Принимаемые состояния: ${conds.join(', ')}
-- Продажа: ТОЛЬКО Vestiaire Collective EU и Vinted EU
-- Доставка: €25 фикс
-
-ЗАДАЧА:
-1. web_search по каждому бренду: поищи текущие аукционы на Buyee/Yahoo Japan Auctions — например "[бренд] [категория] buyee", "[бренд] bag yahoo auctions japan". Найди 2-3 конкретных лота с низкими ставками.
-2. Для каждого найденного лота: web_search цены на Vestiaire Collective EU и Vinted EU
-3. Рассчитай маржу: net = sell_price × 0.86, mult = net / (cost + 25)
-4. Отбери топ-5 лотов с мультипликатором ≥ ${minMult}x
-
-Для каждого лота:
-- item_name: бренд + модель
-- current_bid_jpy: текущая ставка
-- current_bid_eur: в евро
-- buyee_url: ссылка на лот если найдена
-- est_sell_eur: ожидаемая цена продажи в EU
-- max_bid_jpy: максимальный бид для целевой маржи
-- multiplier: потенциальный мультипликатор
-- mult_str: "2.3x"
-- cond_estimate: предполагаемое состояние
-- sell_speed: скорость продажи
-- reason: краткое обоснование (1-2 предложения, русский)
-- verdict: "БРАТЬ" или "РИСКОВАННО"
-
-Ответ ТОЛЬКО JSON:
-{"opportunities":[{"item_name":"...","current_bid_jpy":4500,"current_bid_eur":27,"buyee_url":"https://...","est_sell_eur":155,"max_bid_jpy":7200,"multiplier":2.1,"mult_str":"2.1x","cond_estimate":"A","sell_speed":"быстро (1-2 нед)","reason":"...","verdict":"БРАТЬ"},...],"search_summary":"краткое резюме поиска на русском"}`;
-
+  const prompt='Ты — эксперт по перепродаже дизайнерских вещей. Найди выгодные лоты.\n\nПАРАМЕТРЫ:\n- Бренды: '+brands.join(', ')+'\n- Категория: '+catLabel+'\n- Макс. бюджет: €'+budget+' (≈ ¥'+maxJpy+')\n- Мин. мультипликатор: '+minMult+'x\n- Состояния: '+conds.join(', ')+'\n- Продажа: ТОЛЬКО Vestiaire Collective EU и Vinted EU\n- Доставка: €25 фикс\n\nЗАДАЧА:\n1. web_search текущих аукционов Buyee/Yahoo Japan по каждому бренду — "[бренд] [категория] buyee auction"\n2. Для каждого лота web_search цены на Vestiaire EU и Vinted EU\n3. Рассчитай маржу: net = sell × 0.86, mult = net / (cost + 25)\n4. Топ-5 лотов с mult ≥ '+minMult+'x\n\nОтвет ТОЛЬКО JSON:\n{"opportunities":[{"item_name":"...","current_bid_jpy":4500,"current_bid_eur":27,"buyee_url":"https://...","est_sell_eur":155,"max_bid_jpy":7200,"multiplier":2.1,"mult_str":"2.1x","cond_estimate":"A","sell_speed":"быстро (1-2 нед)","reason":"...","verdict":"БРАТЬ"}],"search_summary":"резюме на русском"}';
   try{
     const d=await callClaude(prompt);
     finishSteps('hs',5);
@@ -1061,205 +821,65 @@ async function runHunter(){
 function showHunterResults(d){
   document.getElementById('h-loader').classList.remove('on');
   document.getElementById('h-btn').disabled=false;
-
   const ops=d.opportunities||[];
-  if(!ops.length){
-    document.getElementById('h-results').innerHTML=`<div style="text-align:center;padding:48px;font-family:'DM Mono',monospace;font-size:11px;color:var(--dim)">Подходящих лотов не найдено по текущим параметрам. Попробуй снизить мин. маржу или расширить бренды.</div>`;
-    return;
-  }
-
+  if(!ops.length){document.getElementById('h-results').innerHTML='<div style="text-align:center;padding:48px;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--dim)">Подходящих лотов не найдено. Попробуй снизить мин. маржу.</div>';return;}
   let html='';
-  if(d.search_summary) html+=`<div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--mid);margin-bottom:16px;padding:10px 14px;background:var(--s1);border:1px solid var(--b1)">${d.search_summary}</div>`;
-
+  if(d.search_summary)html+='<div style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--mid);margin-bottom:16px;padding:10px 14px;background:var(--s1);border:1px solid var(--b1)">'+d.search_summary+'</div>';
   ops.forEach((op,i)=>{
     const cls=op.verdict==='БРАТЬ'?'go':'warn';
-    html+=`
-    <div class="hunt-item">
-      <div class="hunt-item-hdr">
-        <div class="hunt-rank">${String(i+1).padStart(2,'0')}</div>
-        <div style="flex:1;min-width:0">
-          <div class="hunt-name">${op.item_name||'—'}</div>
-          <div class="hunt-desc">${op.cond_estimate?'Состояние: '+op.cond_estimate+' · ':''} ${op.sell_speed||''}</div>
-        </div>
-        <div class="hunt-verdict ${cls}">${op.verdict||'—'}</div>
-      </div>
-      <div class="hunt-item-body">
-        <div class="hsc"><div class="hsc-lbl">Текущая ¥</div><div class="hsc-val">${fmtJpy(op.current_bid_jpy)}</div></div>
-        <div class="hsc"><div class="hsc-lbl">Макс. бид ¥</div><div class="hsc-val ${cls}">${fmtJpy(op.max_bid_jpy)}</div></div>
-        <div class="hsc"><div class="hsc-lbl">Цель EU</div><div class="hsc-val">${fmt(op.est_sell_eur)}</div></div>
-        <div class="hsc"><div class="hsc-lbl">Мультипл.</div><div class="hsc-val ${cls}">${op.mult_str||'?'}</div></div>
-      </div>
-      <div class="hunt-item-foot">
-        <div class="hunt-reason">${op.reason||''}</div>
-        <div class="hunt-links">
-          ${op.buyee_url?`<a class="hunt-link" href="${op.buyee_url}" target="_blank">Buyee →</a>`:''}
-          <button class="btn-ghost btn-sm" onclick='addHuntToWL(${JSON.stringify(op).replace(/'/g,"&#39;")})'>+ Watch</button>
-        </div>
-      </div>
-    </div>`;
+    html+='<div class="hunt-item"><div class="hunt-item-hdr"><div class="hunt-rank">'+String(i+1).padStart(2,'0')+'</div><div style="flex:1;min-width:0"><div class="hunt-name">'+(op.item_name||'—')+'</div><div class="hunt-desc">'+(op.cond_estimate?'Состояние: '+op.cond_estimate+' · ':'')+' '+(op.sell_speed||'')+'</div></div><div class="hunt-verdict '+cls+'">'+(op.verdict||'—')+'</div></div><div class="hunt-item-body"><div class="hsc"><div class="hsc-lbl">Текущая ¥</div><div class="hsc-val">'+fmtJpy(op.current_bid_jpy)+'</div></div><div class="hsc"><div class="hsc-lbl">Макс. бид ¥</div><div class="hsc-val '+cls+'">'+fmtJpy(op.max_bid_jpy)+'</div></div><div class="hsc"><div class="hsc-lbl">Цель EU</div><div class="hsc-val">'+fmt(op.est_sell_eur)+'</div></div><div class="hsc"><div class="hsc-lbl">Мультипл.</div><div class="hsc-val '+cls+'">'+(op.mult_str||'?')+'</div></div></div><div class="hunt-item-foot"><div class="hunt-reason">'+(op.reason||'')+'</div><div class="hunt-links">'+(op.buyee_url?'<a class="hunt-link" href="'+op.buyee_url+'" target="_blank">Buyee →</a>':'')+'<button class="btn-ghost btn-sm" onclick=\'addHuntToWL('+JSON.stringify(op).replace(/'/g,"&#39;")+')\'>+ Watch</button></div></div></div>';
   });
-
   document.getElementById('h-results').innerHTML=html;
   document.getElementById('h-results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function addHuntToWL(op){
-  watchlist.unshift({
-    id:randId(),
-    name:op.item_name||'Unknown',
-    max_bid_jpy:op.max_bid_jpy,
-    max_bid_eur:null,
-    target_sell:op.est_sell_eur,
-    url:op.buyee_url||'',
-    status:'watch',
-    note:'Из Hunter',
-    date:new Date().toLocaleDateString('ru-RU')
-  });
-  saveWL(watchlist);
-  updateBadges();
-  event.target.textContent='✓';
-  setTimeout(()=>event.target.textContent='+ Watch',2000);
+  watchlist.unshift({id:randId(),name:op.item_name||'Unknown',max_bid_jpy:op.max_bid_jpy,max_bid_eur:null,target_sell:op.est_sell_eur,url:op.buyee_url||'',status:'watch',note:'Из Hunter',date:new Date().toLocaleDateString('ru-RU')});
+  saveWL(watchlist);updateBadges();
+  event.target.textContent='✓';setTimeout(()=>event.target.textContent='+ Watch',2000);
 }
 
-// ════════════════════════════════════════
 // WATCHLIST
-// ════════════════════════════════════════
 const STATUS_LABELS={watch:'🔍 Слежу',bid:'🏷 Ставка',won:'✅ Куплено',lost:'❌ Проиграл'};
 const STATUS_NEXT={watch:'bid',bid:'won',won:'lost',lost:'watch'};
 
 function renderWatchlist(){
   const el=document.getElementById('wl-content');
-  if(!watchlist.length){
-    el.innerHTML=`<div class="wl-empty">Watchlist пуст<br><span style="color:var(--dim)">Добавляй лоты из Analyzer или Hunter</span></div>`;
-    return;
-  }
-  const totalMaxEur=watchlist.reduce((s,i)=>s+(i.max_bid_eur||0),0);
+  if(!watchlist.length){el.innerHTML='<div class="wl-empty">Watchlist пуст<br><span style="color:var(--dim)">Добавляй лоты из Analyzer или Hunter</span></div>';return;}
   const watching=watchlist.filter(i=>i.status==='watch').length;
   const won=watchlist.filter(i=>i.status==='won').length;
-  let html=`
-  <div class="wl-stats">
-    <div class="wl-stat"><div class="wl-stat-val">${watchlist.length}</div><div class="wl-stat-lbl">Всего позиций</div></div>
-    <div class="wl-stat"><div class="wl-stat-val">${watching}</div><div class="wl-stat-lbl">Слежу</div></div>
-    <div class="wl-stat"><div class="wl-stat-val">${won}</div><div class="wl-stat-lbl">Куплено</div></div>
-  </div>`;
-
+  let html='<div class="wl-stats"><div class="wl-stat"><div class="wl-stat-val">'+watchlist.length+'</div><div class="wl-stat-lbl">Всего</div></div><div class="wl-stat"><div class="wl-stat-val">'+watching+'</div><div class="wl-stat-lbl">Слежу</div></div><div class="wl-stat"><div class="wl-stat-val">'+won+'</div><div class="wl-stat-lbl">Куплено</div></div></div>';
   watchlist.forEach((item,idx)=>{
-    html+=`
-    <div class="wl-item" id="wl-${item.id}">
-      <div class="wl-item-hdr">
-        <div class="wl-name" title="${item.name}">${item.name}</div>
-        <div class="wl-status ${item.status}" onclick="cycleStatus(${idx})">${STATUS_LABELS[item.status]||item.status}</div>
-        <button class="wl-del" onclick="deleteWL(${idx})" title="Удалить">×</button>
-      </div>
-      <div class="wl-item-body">
-        <div>
-          <div class="wl-field-lbl">Макс. бид ¥</div>
-          <div class="wl-field-val go">${fmtJpy(item.max_bid_jpy)}</div>
-        </div>
-        <div>
-          <div class="wl-field-lbl">Цель продажи</div>
-          <div class="wl-field-val">${fmt(item.target_sell)}</div>
-        </div>
-        <div>
-          <div class="wl-field-lbl">Добавлено</div>
-          <div class="wl-field-val" style="font-size:13px;font-family:'DM Mono',monospace">${item.date||'—'}</div>
-        </div>
-        <div>
-          <div class="wl-field-lbl">Заметка</div>
-          <textarea class="wl-note-in" placeholder="заметки..." onchange="updateNote(${idx},this.value)">${item.note||''}</textarea>
-        </div>
-      </div>
-      ${item.url?`<div class="wl-url"><a href="${item.url}" target="_blank">${item.url}</a></div>`:''}
-    </div>`;
+    html+='<div class="wl-item"><div class="wl-item-hdr"><div class="wl-name" title="'+item.name+'">'+item.name+'</div><div class="wl-status '+item.status+'" onclick="cycleStatus('+idx+')">'+(STATUS_LABELS[item.status]||item.status)+'</div><button class="wl-del" onclick="deleteWL('+idx+')">×</button></div><div class="wl-item-body"><div><div class="wl-field-lbl">Макс. бид ¥</div><div class="wl-field-val go">'+fmtJpy(item.max_bid_jpy)+'</div></div><div><div class="wl-field-lbl">Цель продажи</div><div class="wl-field-val">'+fmt(item.target_sell)+'</div></div><div><div class="wl-field-lbl">Добавлено</div><div class="wl-field-val" style="font-size:13px;font-family:\'DM Mono\',monospace">'+(item.date||'—')+'</div></div><div><div class="wl-field-lbl">Заметка</div><textarea class="wl-note-in" placeholder="заметки..." onchange="updateNote('+idx+',this.value)">'+(item.note||'')+'</textarea></div></div>'+(item.url?'<div class="wl-url"><a href="'+item.url+'" target="_blank">'+item.url+'</a></div>':'')+'</div>';
   });
-
   el.innerHTML=html;
 }
+function cycleStatus(idx){watchlist[idx].status=STATUS_NEXT[watchlist[idx].status]||'watch';saveWL(watchlist);renderWatchlist();}
+function deleteWL(idx){watchlist.splice(idx,1);saveWL(watchlist);updateBadges();renderWatchlist();}
+function updateNote(idx,val){watchlist[idx].note=val;saveWL(watchlist);}
 
-function cycleStatus(idx){
-  watchlist[idx].status=STATUS_NEXT[watchlist[idx].status]||'watch';
-  saveWL(watchlist);
-  renderWatchlist();
-}
-function deleteWL(idx){
-  watchlist.splice(idx,1);
-  saveWL(watchlist);
-  updateBadges();
-  renderWatchlist();
-}
-function updateNote(idx,val){
-  watchlist[idx].note=val;
-  saveWL(watchlist);
-}
-
-// ════════════════════════════════════════
 // HISTORY
-// ════════════════════════════════════════
 function renderHistory(){
   const el=document.getElementById('hist-content');
-  if(!history.length){
-    el.innerHTML=`<div class="hist-empty">История пуста<br><span style="color:var(--dim)">Здесь будут твои анализы</span></div>`;
-    return;
-  }
-
+  if(!history.length){el.innerHTML='<div class="hist-empty">История пуста<br><span style="color:var(--dim)">Здесь будут твои анализы</span></div>';return;}
   const mults=history.filter(h=>h.mult_num>0).map(h=>h.mult_num);
   const avgMult=mults.length?(mults.reduce((a,b)=>a+b,0)/mults.length).toFixed(2):'—';
   const bestMult=mults.length?Math.max(...mults).toFixed(1)+'x':'—';
   const buys=history.filter(h=>h.verdict==='БРАТЬ').length;
-
-  let html=`
-  <div class="hist-stats">
-    <div class="hist-stat"><div class="hist-stat-val">${history.length}</div><div class="hist-stat-lbl">Анализов</div></div>
-    <div class="hist-stat"><div class="hist-stat-val">${avgMult}x</div><div class="hist-stat-lbl">Средний mult</div></div>
-    <div class="hist-stat"><div class="hist-stat-val">${bestMult}</div><div class="hist-stat-lbl">Лучший</div></div>
-    <div class="hist-stat"><div class="hist-stat-val">${buys}</div><div class="hist-stat-lbl">БРАТЬ</div></div>
-  </div>
-  <div class="hist-table">
-    <div class="hist-thead">
-      <div class="hist-th">Позиция</div>
-      <div class="hist-th">Вердикт</div>
-      <div class="hist-th">Мульт.</div>
-      <div class="hist-th">Макс. бид</div>
-      <div class="hist-th">Текущая</div>
-      <div class="hist-th"></div>
-    </div>`;
-
+  let html='<div class="hist-stats"><div class="hist-stat"><div class="hist-stat-val">'+history.length+'</div><div class="hist-stat-lbl">Анализов</div></div><div class="hist-stat"><div class="hist-stat-val">'+avgMult+'x</div><div class="hist-stat-lbl">Средний mult</div></div><div class="hist-stat"><div class="hist-stat-val">'+bestMult+'</div><div class="hist-stat-lbl">Лучший</div></div><div class="hist-stat"><div class="hist-stat-val">'+buys+'</div><div class="hist-stat-lbl">БРАТЬ</div></div></div><div class="hist-table"><div class="hist-thead"><div class="hist-th">Позиция</div><div class="hist-th">Вердикт</div><div class="hist-th">Мульт.</div><div class="hist-th">Макс. бид</div><div class="hist-th">Текущая</div><div class="hist-th"></div></div>';
   history.forEach((h,i)=>{
     const cls=h.verdict==='БРАТЬ'?'go':h.verdict==='РИСКОВАННО'?'warn':'no';
-    html+=`
-    <div class="hist-row" onclick="reloadHistory(${i})">
-      <div class="htd name">${h.item||'—'}<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);margin-top:1px">${h.date||''}</div></div>
-      <div class="htd ${cls}"><span class="verdict-dot ${cls}"></span>${h.verdict||'—'}</div>
-      <div class="htd ${cls}">${h.mult||'—'}</div>
-      <div class="htd">${fmtJpy(h.max_bid_jpy)||'—'}</div>
-      <div class="htd">${fmtJpy(h.current_jpy)||'—'}</div>
-      <div class="htd" style="text-align:right">${h.url?`<a href="${h.url}" target="_blank" onclick="event.stopPropagation()" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);text-decoration:none;border-bottom:1px dashed rgba(245,200,66,.3)">Buyee</a>`:''}</div>
-    </div>`;
+    html+='<div class="hist-row" onclick="reloadHistory('+i+')"><div class="htd name">'+(h.item||'—')+'<div style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--dim);margin-top:1px">'+(h.date||'')+'</div></div><div class="htd '+cls+'"><span class="verdict-dot '+cls+'"></span>'+(h.verdict||'—')+'</div><div class="htd '+cls+'">'+(h.mult||'—')+'</div><div class="htd">'+fmtJpy(h.max_bid_jpy)+'</div><div class="htd">'+fmtJpy(h.current_jpy)+'</div><div class="htd" style="text-align:right">'+(h.url?'<a href="'+h.url+'" target="_blank" onclick="event.stopPropagation()" style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--gold);text-decoration:none;border-bottom:1px dashed rgba(245,200,66,.3)">Buyee</a>':'')+'</div></div>';
   });
-
-  html+='</div>';
-  html+=`<div style="text-align:right;margin-top:10px"><button class="btn-ghost" onclick="clearHistory()">Очистить историю</button></div>`;
+  html+='</div><div style="text-align:right;margin-top:10px"><button class="btn-ghost" onclick="clearHistory()">Очистить историю</button></div>';
   el.innerHTML=html;
 }
+function reloadHistory(idx){const h=history[idx];if(h.url){document.getElementById('a-url').value=h.url;switchTab('analyzer');}}
+function clearHistory(){if(confirm('Удалить всю историю?')){history=[];saveHist(history);updateBadges();renderHistory();}}
 
-function reloadHistory(idx){
-  // Pre-fill analyzer URL and switch to it
-  const h=history[idx];
-  if(h.url){
-    document.getElementById('a-url').value=h.url;
-    switchTab('analyzer');
-  }
-}
-function clearHistory(){
-  if(confirm('Удалить всю историю?')){
-    history=[];saveHist(history);updateBadges();renderHistory();
-  }
-}
-
-// ════════════════════════════════════════
 // INIT
-// ════════════════════════════════════════
 document.getElementById('a-url').addEventListener('keydown',e=>{if(e.key==='Enter')runAnalyzer();});
+updateApiBanner();
 updateBadges();
 </script>
 </body>
